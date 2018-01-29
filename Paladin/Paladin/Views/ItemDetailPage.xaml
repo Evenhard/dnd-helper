@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Paladin.Views.ItemDetailPage"
+             Title="{Binding Title}">
+
+    <ScrollView>
+        <StackLayout Spacing="10" Padding="15">
+            <Label Text="Название:" FontSize="Medium" />
+            <Label Text="{Binding Item.Title}" FontSize="Small"/>
+            <ContentView HeightRequest="1" BackgroundColor="#F3F0E9" />
+            
+            <Label Text="Уровень:" FontSize="Medium" />
+            <Label Text="{Binding Item.Level}" FontSize="Small"/>
+            <ContentView HeightRequest="1" BackgroundColor="#F3F0E9" />
+            
+            <Label Text="Время накладывания:" FontSize="Medium" />
+            <Label Text="{Binding Item.Time}" FontSize="Small"/>
+            <ContentView HeightRequest="1" BackgroundColor="#F3F0E9" />
+            
+            <Label Text="Дистанция:" FontSize="Medium" />
+            <Label Text="{Binding Item.Distance}" FontSize="Small"/>
+            <ContentView HeightRequest="1" BackgroundColor="#F3F0E9" />
+            
+            <Label Text="Компоненты:" FontSize="Medium" />
+            <Label Text="{Binding Item.Components}" FontSize="Small"/>
+            <ContentView HeightRequest="1" BackgroundColor="#F3F0E9" />
+            
+            <Label Text="Длительность:" FontSize="Medium" />
+            <Label Text="{Binding Item.Duration}" FontSize="Small"/>
+            <ContentView HeightRequest="1" BackgroundColor="#F3F0E9" />
+            
+            <Label Text="Описание:" FontSize="Medium" />
+            <Label Text="{Binding Item.Description}" FontSize="Small"/>
+        </StackLayout>
+    </ScrollView>    
+</ContentPage>
