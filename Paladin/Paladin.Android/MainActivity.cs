@@ -25,7 +25,9 @@ namespace Paladin.Droid
             base.OnCreate(bundle);
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
-            Plugin.Iconize.Iconize.With(new Plugin.Iconize.Fonts.IoniconsModule());
+            Plugin.Iconize.Iconize.With(new Plugin.Iconize.Fonts.IoniconsModule())
+                                  .With(new Plugin.Iconize.Fonts.FontAwesomeModule());
+
             LoadApplication(new App());
         }
     }
