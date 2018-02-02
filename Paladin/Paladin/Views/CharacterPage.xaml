@@ -111,6 +111,10 @@
                                Margin="0"/>
 
                     </StackLayout>
+
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding InputPopupCommand}" />
+                    </Frame.GestureRecognizers>
                 </Frame>
 
                 <Frame HorizontalOptions="FillAndExpand"
@@ -211,9 +215,8 @@
                                          Margin="0.5, 0.5">
                                 
                                 <Label Text="{Binding Title}" 
-                                       FontSize="17"
+                                       FontSize="18"
                                        Margin="10, 0, 0, 0"
-                                       FontAttributes="Bold"
                                        HorizontalOptions="StartAndExpand"
                                        VerticalOptions="CenterAndExpand"/>
                                 
