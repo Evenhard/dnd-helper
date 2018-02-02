@@ -10,6 +10,7 @@ using Paladin.ViewModels;
 using Paladin.Services;
 using System.Windows.Input;
 using System.Diagnostics;
+using Paladin.Models;
 
 namespace Paladin.Views
 {
@@ -22,19 +23,26 @@ namespace Paladin.Views
         {
             InitializeComponent();
 
+            Search.TextChanged += (sender, e) => {
+                viewModel.FilterItems(Search.Text);
+            };
+
             BindingContext = viewModel = new ItemsViewModel();
         }
 
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
             var item = args.SelectedItem as SpellItem;
-            if (item == null)
-                return;
-
-            await Navigation.PushAsync(new ItemDetailPage(new ItemDetailViewModel(item)));            
-
-            // Manually deselect item.
             ItemsListView.SelectedItem = null;
+
+            if (item == null) return;
+
+            await Navigation.PushAsync(new ItemDetailPage(new ItemDetailViewModel(item)));
+        }
+
+        public void ToolbarClicked(object sender, EventArgs args)
+        {
+            Search.IsVisible = !Search.IsVisible;
         }
 
         protected override void OnAppearing()

@@ -1,4 +1,5 @@
-﻿using Paladin.Services;
+﻿using Paladin.Models;
+using Paladin.Services;
 using Paladin.Views;
 using System;
 using System.Collections.Generic;
@@ -18,15 +19,15 @@ namespace Paladin.ViewModels
 
         public PreparedViewModel()
         {
-            Title = "Заклинания";
+            Title = "Подготовленные заклинания";
             Items = new ObservableCollection<SpellItem>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 
-            MessagingCenter.Subscribe<ItemDetailPage, SpellItem>(this, "Подготовить", (obj, item) =>
-            {
-                var _item = item as SpellItem;
-                Items.Add(_item);
-            });
+            //MessagingCenter.Subscribe<ItemDetailPage, SpellItem>(this, "Подготовить", (obj, item) =>
+            //{
+            //    var _item = item as SpellItem;
+            //    Items.Add(_item);
+            //});
         }
 
         async Task ExecuteLoadItemsCommand()
@@ -39,7 +40,7 @@ namespace Paladin.ViewModels
             try
             {
                 Items.Clear();
-                var items = await App.Database.GetPreparedSpellsAsync();
+                var items = await App.Database.GetPreparedSpellsList();
                 items = items.OrderBy(item => item.Level).ThenBy(item => item.Title).ToList();
 
                 foreach (var item in items)

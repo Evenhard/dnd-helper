@@ -4,6 +4,7 @@ using Xamarin.Forms.Xaml;
 using Paladin.ViewModels;
 using Paladin.Services;
 using System.Diagnostics;
+using Paladin.Models;
 
 namespace Paladin.Views
 {

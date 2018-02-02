@@ -1,0 +1,259 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:iconize="clr-namespace:FormsPlugin.Iconize;assembly=FormsPlugin.Iconize"
+             x:Class="Paladin.Views.CharacterPage"
+             Title="{Binding Title}"
+             x:Name="BrowseCharacterPage">
+    <ContentPage.Content>
+        
+        <StackLayout BackgroundColor="#F3F0E9" Spacing="0">
+
+            <Grid ColumnSpacing="0" 
+                  RowSpacing="0"
+                  Margin="0"
+                  VerticalOptions="Start"
+                  BackgroundColor="White"
+                  HorizontalOptions="FillAndExpand" 
+                  x:Name="HpGrid">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="5*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+
+                <StackLayout Orientation="Horizontal"
+                             HorizontalOptions="FillAndExpand"
+                             VerticalOptions="CenterAndExpand"
+                             Margin="10"
+                             Grid.Column="0" 
+                             Grid.Row="0" >
+                        
+                    <Label Text="Текущие ХП:" 
+                           FontAttributes="Bold"
+                           FontSize="16" 
+                           HorizontalOptions="StartAndExpand"
+                           Margin="0, 0, 0, 0"/>
+
+                    <Label Text="39/39" 
+                           FontSize="16" 
+                           HorizontalOptions="End"
+                           Margin="0, 0, 0, 0"/>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" 
+                             HorizontalOptions="FillAndExpand"
+                             VerticalOptions="CenterAndExpand"
+                             Margin="10"
+                             Grid.Column="1" 
+                             Grid.Row="0" >
+
+                    <Label Text="Временные ХП:" 
+                           FontAttributes="Bold"
+                           FontSize="16" 
+                           HorizontalOptions="StartAndExpand"
+                           Margin="0, 0, 0, 0"/>
+
+                    <Label Text="5" 
+                           FontSize="16" 
+                           HorizontalOptions="End"
+                           Margin="0, 0, 0, 0"/>
+                </StackLayout>
+            </Grid>
+
+            <Grid ColumnSpacing="0" 
+                  RowSpacing="0"
+                  Margin="0"
+                  VerticalOptions="Start"
+                  BackgroundColor="White"
+                  HorizontalOptions="FillAndExpand" 
+                  x:Name="DamageGrid">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="3*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Frame HorizontalOptions="FillAndExpand"
+                       BackgroundColor="#B61C1A"
+                       CornerRadius="10"
+                       HeightRequest="17"
+                       Margin="5, 5, 1.5, 5"
+                       Grid.Column="0" 
+                       Grid.Row="0" >
+
+                    <StackLayout Orientation="Horizontal" 
+                                 HorizontalOptions="FillAndExpand"
+                                 VerticalOptions="FillAndExpand"
+                                 Margin="-7, -10">
+
+                        <iconize:IconLabel Text="ion-android-hand"
+                                           TextColor="White"
+                                           FontSize="26" 
+                                           HorizontalOptions="Start"
+                                           VerticalOptions="CenterAndExpand"
+                                           Margin="0"/>
+
+                        <Label Text="Щит"
+                               TextColor="White"
+                               FontSize="14" 
+                               HorizontalOptions="CenterAndExpand"
+                               VerticalOptions="CenterAndExpand"
+                               Margin="0"/>
+
+                    </StackLayout>
+                </Frame>
+
+                <Frame HorizontalOptions="FillAndExpand"
+                       BackgroundColor="#B61C1A"
+                       CornerRadius="10"
+                       HeightRequest="17"
+                       Margin="1.5, 5, 1.5, 5"
+                       Grid.Column="1" 
+                       Grid.Row="0" >
+
+                    <StackLayout Orientation="Horizontal" 
+                                 HorizontalOptions="FillAndExpand"
+                                 VerticalOptions="FillAndExpand"
+                                 Margin="-7, -10">
+
+                        <iconize:IconLabel Text="ion-heart"
+                                           TextColor="White"
+                                           FontSize="26" 
+                                           HorizontalOptions="Start"
+                                           VerticalOptions="CenterAndExpand"
+                                           Margin="0"/>
+
+                        <Label Text="Лечение"
+                               TextColor="White"
+                               FontSize="14" 
+                               HorizontalOptions="CenterAndExpand"
+                               VerticalOptions="CenterAndExpand"
+                               Margin="0"/>
+
+                    </StackLayout>
+                </Frame>
+
+                <Frame HorizontalOptions="FillAndExpand"
+                       BackgroundColor="#B61C1A"
+                       CornerRadius="10"
+                       HeightRequest="17"
+                       Margin="1.5, 5, 5, 5"
+                       Grid.Column="2" 
+                       Grid.Row="0" >
+
+                    <StackLayout Orientation="Horizontal" 
+                                 HorizontalOptions="FillAndExpand"
+                                 VerticalOptions="FillAndExpand"
+                                 Margin="-7, -10">
+
+                        <iconize:IconLabel Text="ion-heart-broken"
+                                           TextColor="White"
+                                           FontSize="26" 
+                                           HorizontalOptions="Start"
+                                           VerticalOptions="CenterAndExpand"
+                                           Margin="0"/>
+
+                        <Label Text="Урон"
+                               TextColor="White"
+                               FontSize="14" 
+                               HorizontalOptions="CenterAndExpand"
+                               VerticalOptions="CenterAndExpand"
+                               Margin="0"/>
+
+                    </StackLayout>
+                </Frame>
+            </Grid>
+
+            <ListView ItemsSource="{Binding ListOfFeats}"
+                      VerticalOptions="CenterAndExpand"
+                      Margin="0"
+                      BackgroundColor="#F3F0E9"
+                      SeparatorVisibility="None"
+                      SeparatorColor="Transparent"
+                      IsGroupingEnabled="true">
+                
+                <ListView.GroupHeaderTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+
+                            <StackLayout HeightRequest="35"
+                                         Margin="0, 0, 0, 0"
+                                         BackgroundColor="White">
+                                
+                                <Label Text="{Binding Heading}" 
+                                       FontSize="20"
+                                       Margin="10, 0, 0, 5"
+                                       FontAttributes="Bold"
+                                       VerticalOptions="EndAndExpand"/>
+                            </StackLayout>
+                            
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.GroupHeaderTemplate>
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            
+                            <StackLayout Orientation="Horizontal" 
+                                         BackgroundColor="White"
+                                         HeightRequest="25"
+                                         Margin="0.5, 0.5">
+                                
+                                <Label Text="{Binding Title}" 
+                                       FontSize="17"
+                                       Margin="10, 0, 0, 0"
+                                       FontAttributes="Bold"
+                                       HorizontalOptions="StartAndExpand"
+                                       VerticalOptions="CenterAndExpand"/>
+                                
+                                <!--  ion-android-add-circle  -->
+                                <!--  ion-android-remove-circle  -->
+                                <Label Text="{Binding Decription}"
+                                       FontSize="20"
+                                       Margin="0, 0, 10, 0"
+                                       HorizontalOptions="End"
+                                       VerticalOptions="CenterAndExpand"/>
+                            </StackLayout>
+                            
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <StackLayout VerticalOptions="End"
+                         Orientation="Horizontal"
+                         BackgroundColor="White">
+
+                <Label Text="Отдых"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Start"
+                       VerticalOptions="Center"
+                       Margin="10, 0"
+                       FontSize="22"/>
+
+                <iconize:IconLabel Text="ion-refresh"
+                                   FontSize="38"
+                                   HorizontalOptions="EndAndExpand"
+                                   Margin="0, 10, 10, 10"/>
+
+                <iconize:IconLabel Text="ion-bonfire"
+                                   FontSize="38"
+                                   HorizontalOptions="End"
+                                   Margin="10, 10, 20, 10"/>
+            </StackLayout>
+            
+        </StackLayout>
+
+    </ContentPage.Content>
+</ContentPage>

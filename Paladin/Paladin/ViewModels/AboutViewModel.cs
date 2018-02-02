@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Paladin.Services;
+using System;
 using System.Windows.Input;
 
 using Xamarin.Forms;
@@ -12,10 +13,10 @@ namespace Paladin.ViewModels
 
         public AboutViewModel()
         {
-            Title = "Персонаж";
+            Title = "Настройки";
 
-            FillBaseCommand = new Command(async() => await App.Database.FillDataBase());
-            DropBaseCommand = new Command(async () => await App.Database.ClearDataBase());
+            FillBaseCommand = new Command(async() => await ClericSpells.FillDataBase());
+            DropBaseCommand = new Command(async () => await App.Database.ClearSpellBase());
         }
 
     }

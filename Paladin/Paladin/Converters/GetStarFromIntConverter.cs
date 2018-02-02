@@ -5,27 +5,28 @@ using Xamarin.Forms;
 
 namespace Paladin.Converters
 {
-    public class GetColorFromIntConverter : IValueConverter
+    public class GetStarFromIntConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            var hex = (int)value;
+            var star = (int)value;
 
-            switch (hex)
+            switch (star)
             {
                 case 1:
-                    return Color.FromHex("#00ff00");
+                    return "ion-android-star";
 
                 case 2:
-                    return Color.FromHex("#0000ff");
+                    return "ion-android-star-half";
 
                 default:
-                    return Color.FromHex("#ff0000");
+                    return "ion-android-star-outline";
             }
         }
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             throw new NotImplementedException();
         }
+
     }
 }

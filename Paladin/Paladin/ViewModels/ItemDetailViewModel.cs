@@ -1,4 +1,5 @@
 ﻿using System;
+using Paladin.Models;
 using Paladin.Services;
 
 namespace Paladin.ViewModels

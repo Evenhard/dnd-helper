@@ -9,17 +9,29 @@
 
     <ContentPage.Resources>
         <ResourceDictionary>
-
-            <convert:NegateBooleanConverter x:Key="negateBooleanConverter"/>
-            <convert:GetColorFromIntConverter x:Key="getColorFromIntConverter"/>
+            <convert:GetStarFromIntConverter x:Key="getStarFromIntConverter"/>
             <convert:GetPreparedCheckboxConverter x:Key="getPreparedCheckboxConverter"/>
-
         </ResourceDictionary>
     </ContentPage.Resources>
-    
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Name="MenuItem"
+                     Clicked="ToolbarClicked"
+                     Order="Primary" 
+                     Icon="search.png" 
+                     Text="Поиск" 
+                     Priority="0" />
+    </ContentPage.ToolbarItems>
+
     <ContentPage.Content>
-        
-        <StackLayout>
+
+        <StackLayout BackgroundColor="#F3F0E9">
+
+            <SearchBar x:Name="Search" 
+                       Margin="5, 5, 5, -5" 
+                       BackgroundColor="White" 
+                       IsVisible="False"/>
+            
             <ListView x:Name="ItemsListView" 
                       ItemsSource="{Binding Items}"
                       VerticalOptions="FillAndExpand"
@@ -47,42 +59,41 @@
                         <ViewCell>
                             <StackLayout Margin="5, 2.5" BackgroundColor="White">
 
-                                <Grid ColumnSpacing="0" RowSpacing="0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" x:Name="Grid">
+                                <Grid ColumnSpacing="0" 
+                                      RowSpacing="0" 
+                                      VerticalOptions="FillAndExpand" 
+                                      HorizontalOptions="FillAndExpand" 
+                                      x:Name="Grid">
+
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="40"/>
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="40"/>
                                     </Grid.ColumnDefinitions>
+
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="35"/>
                                         <RowDefinition Height="*"/>
                                     </Grid.RowDefinitions>
 
-                                    <!--<BoxView Grid.Column="0"
-                                             Grid.RowSpan="2"
-                                             WidthRequest="1"
-                                             HorizontalOptions="EndAndExpand"
-                                             VerticalOptions="FillAndExpand" 
-                                             BackgroundColor="LightGray"/>-->
-
                                     <iconize:IconLabel Text="ion-android-bookmark" 
                                                        FontSize="50"
                                                        VerticalTextAlignment="Center"
                                                        HorizontalTextAlignment="Center"
-                                                       HorizontalOptions="FillAndExpand"
                                                        VerticalOptions="FillAndExpand"
+                                                       HorizontalOptions="FillAndExpand"
                                                        Margin="0"
                                                        Grid.Column="0"
                                                        Grid.RowSpan="2"/>
 
                                     <Label Text="{Binding Level}" 
                                            TextColor="White"
-                                           VerticalTextAlignment="Start"
-                                           HorizontalTextAlignment="Center"
-                                           HorizontalOptions="FillAndExpand"
-                                           VerticalOptions="Start"
-                                           Margin="0, 18"
                                            FontSize="20" 
+                                           VerticalTextAlignment="Center"
+                                           HorizontalTextAlignment="Center"
+                                           VerticalOptions="FillAndExpand"
+                                           HorizontalOptions="FillAndExpand"
+                                           Margin="0, 0, 0, 5"
                                            Grid.Column="0"
                                            Grid.RowSpan="2" />
 
@@ -91,27 +102,59 @@
                                            Style="{DynamicResource ListItemTextStyle}" 
                                            Margin="10, 10, 5, 0"
                                            HorizontalOptions="FillAndExpand"
-                                           FontSize="18" 
+                                           FontSize="18"
+                                           FontAttributes="Bold"
                                            Grid.Column="1" />
 
-                                    <StackLayout Orientation="Horizontal"
-                                                 Grid.Column="1"
-                                                 Grid.Row="1"
-                                                 Margin="10, 5, 5, 5"
-                                                 VerticalOptions="Start">
+                                    <Grid Grid.Column="1"
+                                          Grid.Row="1"
+                                          Margin="10, 5, 5, 5"
+                                          HorizontalOptions="FillAndExpand"
+                                          VerticalOptions="StartAndExpand">
 
-                                        <iconize:IconLabel Text="ion-android-star" 
-                                                           FontSize="13"
-                                                           VerticalTextAlignment="Center"
-                                                           TextColor="{Binding SpellColor, Converter={StaticResource getColorFromIntConverter}}"/>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="40"/>
+                                        </Grid.ColumnDefinitions>
 
                                         <Label Text="{Binding Time}" 
                                                LineBreakMode="NoWrap"
+                                               VerticalOptions="CenterAndExpand"
                                                VerticalTextAlignment="Center"
-                                               Style="{DynamicResource ListItemDetailTextStyle}"                                               
-                                               FontSize="13" />                                        
-                                    </StackLayout>
-                                    
+                                               Style="{DynamicResource ListItemDetailTextStyle}"
+                                               FontSize="18" />
+
+                                        <StackLayout Grid.Column="1"
+                                                     Orientation="Horizontal" 
+                                                     HorizontalOptions="EndAndExpand" 
+                                                     VerticalOptions="CenterAndExpand" 
+                                                     Spacing="4">
+
+                                            <iconize:IconLabel Text="ion-wand" 
+                                                               FontSize="13"
+                                                               VerticalOptions="CenterAndExpand"
+                                                               VerticalTextAlignment="Center"
+                                                               IsVisible="{Binding Ritual}" />
+
+                                            <iconize:IconLabel Text="ion-eye" 
+                                                               FontSize="13"
+                                                               VerticalOptions="CenterAndExpand"
+                                                               VerticalTextAlignment="Center"
+                                                               IsVisible="{Binding Concentration}" />
+
+                                            <iconize:IconLabel Text="ion-flash" 
+                                                               FontSize="13"
+                                                               VerticalOptions="CenterAndExpand"
+                                                               VerticalTextAlignment="Center"
+                                                               IsVisible="{Binding HighSlot}" />
+
+                                            <iconize:IconLabel Text="{Binding SpellColor, Converter={StaticResource getStarFromIntConverter}}" 
+                                                               FontSize="13"
+                                                               VerticalOptions="CenterAndExpand"
+                                                               VerticalTextAlignment="Center" />
+                                        </StackLayout>
+
+                                    </Grid>
 
                                     <iconize:IconLabel Text="{Binding Prepared, Converter={StaticResource getPreparedCheckboxConverter}}" 
                                                        Style="{DynamicResource ListItemDetailTextStyle}"
@@ -133,7 +176,7 @@
 
                                     </iconize:IconLabel>
 
-                                </Grid>                                
+                                </Grid>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>

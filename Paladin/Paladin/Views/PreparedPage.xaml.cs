@@ -1,4 +1,5 @@
-﻿using Paladin.Services;
+﻿using Paladin.Models;
+using Paladin.Services;
 using Paladin.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -31,7 +32,7 @@ namespace Paladin.Views
 
             await Navigation.PushAsync(new ItemDetailPage(new ItemDetailViewModel(item)));
 
-            // Manually deselect item.
+            // Manually deselect item
             ItemsListView.SelectedItem = null;
         }
 

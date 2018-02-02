@@ -8,21 +8,21 @@
     <views:AboutPage />-->
 
     <TabbedPage.Children>
-        <NavigationPage Icon="menu1.png">
+        <NavigationPage Icon="menu3.png">
             <x:Arguments>
-                <views:ItemsPage />
+                <views:CharacterPage />
             </x:Arguments>
-        </NavigationPage>
+        </NavigationPage>        
 
         <NavigationPage Icon="menu2.png">
             <x:Arguments>
-                <views:AboutPage />
+                <views:PreparedPage />
             </x:Arguments>
         </NavigationPage>
 
-        <NavigationPage Icon="menu3.png">
+        <NavigationPage Icon="menu1.png">
             <x:Arguments>
-                <views:AboutPage />
+                <views:ItemsPage />
             </x:Arguments>
         </NavigationPage>
 
