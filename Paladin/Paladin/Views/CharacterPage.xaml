@@ -86,7 +86,7 @@
                 <Frame HorizontalOptions="FillAndExpand"
                        BackgroundColor="#B61C1A"
                        CornerRadius="10"
-                       HeightRequest="17"
+                       HeightRequest="10"
                        Margin="5, 5, 1.5, 5"
                        Grid.Column="0" 
                        Grid.Row="0" >
@@ -94,7 +94,7 @@
                     <StackLayout Orientation="Horizontal" 
                                  HorizontalOptions="FillAndExpand"
                                  VerticalOptions="FillAndExpand"
-                                 Margin="-7, -10">
+                                 Margin="-7, -12">
 
                         <iconize:IconLabel Text="ion-android-hand"
                                            TextColor="White"
@@ -120,7 +120,7 @@
                 <Frame HorizontalOptions="FillAndExpand"
                        BackgroundColor="#B61C1A"
                        CornerRadius="10"
-                       HeightRequest="17"
+                       HeightRequest="10"
                        Margin="1.5, 5, 1.5, 5"
                        Grid.Column="1" 
                        Grid.Row="0" >
@@ -128,7 +128,7 @@
                     <StackLayout Orientation="Horizontal" 
                                  HorizontalOptions="FillAndExpand"
                                  VerticalOptions="FillAndExpand"
-                                 Margin="-7, -10">
+                                 Margin="-7, -12">
 
                         <iconize:IconLabel Text="ion-heart"
                                            TextColor="White"
@@ -150,7 +150,7 @@
                 <Frame HorizontalOptions="FillAndExpand"
                        BackgroundColor="#B61C1A"
                        CornerRadius="10"
-                       HeightRequest="17"
+                       HeightRequest="10"
                        Margin="1.5, 5, 5, 5"
                        Grid.Column="2" 
                        Grid.Row="0" >
@@ -158,7 +158,7 @@
                     <StackLayout Orientation="Horizontal" 
                                  HorizontalOptions="FillAndExpand"
                                  VerticalOptions="FillAndExpand"
-                                 Margin="-7, -10">
+                                 Margin="-7, -12">
 
                         <iconize:IconLabel Text="ion-heart-broken"
                                            TextColor="White"
