@@ -18,7 +18,7 @@ namespace Paladin.AlertPopup
 
         // public string to expose the 
         // text Entry input's value
-        public string TextInputResult { get; set; }
+        public int TextInputResult { get; set; }
 
         public static readonly BindableProperty IsValidationLabelVisibleProperty = 
             BindableProperty.Create(nameof(IsValidationLabelVisible), typeof(bool), typeof(TextInputView), false, BindingMode.OneWay, null,
@@ -49,15 +49,15 @@ namespace Paladin.AlertPopup
             }
         }
 
-        public TextInputView (string titleText, string placeHolderText, string validationLabelText, string closeButtonText)
+        public TextInputView (string titleText)
 		{
 			InitializeComponent ();
 
             // update the Element's textual values
             TitleLabel.Text = titleText;
-            InputEntry.Placeholder = placeHolderText;
-            CloseButton.Text = closeButtonText;
-            ValidationLabel.Text = validationLabelText;
+            InputEntry.Placeholder = "";
+            CloseButton.Text = "Ок";
+            ValidationLabel.Text = "Поле ввода не должно быть пустым!";
 
             // handling events to expose to public
             CloseButton.Clicked += CloseButton_Clicked;
@@ -74,7 +74,11 @@ namespace Paladin.AlertPopup
         {
             // update the public string value 
             // accordingly to the text Entry's value
-            TextInputResult = InputEntry.Text;
+            var resultSuccess = Int32.TryParse(InputEntry.Text, out var result);
+            if (resultSuccess)
+                TextInputResult = result;
+            else
+                TextInputResult = 0;
         }
     }
 }

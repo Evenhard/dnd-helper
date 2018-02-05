@@ -21,7 +21,7 @@ namespace Paladin.Services
                 {
                     ClassSpell = true,
                     HighSlot = true,
-                    SpellColor = 1,
+                    SpellColor = SpellColor.Best,
                     Title = "Волна грома",
                     Level = 1,
                     School = "1 уровень, воплощение",
@@ -53,7 +53,7 @@ namespace Paladin.Services
                 {
                     ClassSpell = true,
                     HighSlot = true,
-                    SpellColor = 1,
+                    SpellColor = SpellColor.Best,
                     Title = "Дребезги",
 		            Level = 2,
 		            School = "2 уровень, воплощение",
@@ -97,7 +97,7 @@ namespace Paladin.Services
                 {
                     ClassSpell = true,
                     HighSlot = true,
-                    SpellColor = 1,
+                    SpellColor = SpellColor.Best,
                     Title = "Призыв молнии",
 		            Level = 3,
 		            School = "3 уровень, вызов",
@@ -114,7 +114,7 @@ namespace Paladin.Services
                 new SpellItem
                 {
                     ClassSpell = true,
-                    SpellColor = 2,
+                    SpellColor = SpellColor.Usefull,
                     Title = "Власть над водами",
                     Level = 4,
                     School = "4 уровень, преобразование",
@@ -134,7 +134,7 @@ namespace Paladin.Services
                 {
                     ClassSpell = true,
                     HighSlot = true,
-                    SpellColor = 1,
+                    SpellColor = SpellColor.Best,
                     Title = "Град",
                     Level = 4,
                     School = "4 уровень, воплощение",
@@ -150,7 +150,7 @@ namespace Paladin.Services
                 //{
                 //    ClassSpell = true,
                 //    HighSlot = true,
-                //    SpellColor = 1,
+                //    SpellColor = SpellColor.Best,
                 //    Title = "Нашествие насекомых",
                 //    Level = 5,
                 //    School = "5 уровень, вызов",
@@ -166,7 +166,7 @@ namespace Paladin.Services
                 //new SpellItem
                 //{
                 //    ClassSpell = true,
-                //    SpellColor = 1,
+                //    SpellColor = SpellColor.Best,
                 //    Title = "Разрушительная волна",
                 //    Level = 5,
                 //    School = "5 уровень, воплощение",
@@ -188,7 +188,7 @@ namespace Paladin.Services
                 {
                     Prepared = true,
                     Title = "Починка",
-                    SpellColor = 2,
+                    SpellColor = SpellColor.Usefull,
                     Level = 0,
                     School = "Заговор, преобразование",
                     Time = "1 минута",
@@ -201,7 +201,7 @@ namespace Paladin.Services
                 new SpellItem
                 {
                     Title = "Свет",
-                    SpellColor = 2,
+                    SpellColor = SpellColor.Usefull,
                     Level = 0,
                     School = "Заговор, воплощение",
                     Time = "1 действие",
@@ -216,7 +216,7 @@ namespace Paladin.Services
                     Prepared = true,
                     HighSlot = true,
                     Title = "Священное пламя",
-                    SpellColor = 1,
+                    SpellColor = SpellColor.Best,
                     Level = 0,
                     School = "Заговор, воплощение",
                     Time = "1 действие",
@@ -244,7 +244,7 @@ namespace Paladin.Services
                 {
                     Prepared = true,
                     Title = "Указание",
-                    SpellColor = 1,
+                    SpellColor = SpellColor.Best,
                     Level = 0,
                     School = "Заговор, прорицание",
                     Time = "1 действие",
@@ -258,7 +258,7 @@ namespace Paladin.Services
                 new SpellItem
                 {
                     Title = "Уход за умирающим",
-                    SpellColor = 2,
+                    SpellColor = SpellColor.Usefull,
                     Level = 0,
                     School = "Заговор, некромантия",
                     Time = "1 действие",
@@ -293,7 +293,7 @@ namespace Paladin.Services
                     Prepared = true,
                     HighSlot = true,
                     Title = "Благословение",
-                    SpellColor = 1,
+                    SpellColor = SpellColor.Best,
                     Level = 1,
                     School = "1 уровень, очарование",
                     Time = "1 действие",
@@ -309,7 +309,7 @@ namespace Paladin.Services
 	            new SpellItem
 	            {
 		            Title = "Защита от добра и зла",
-		            SpellColor = 2,
+		            SpellColor = SpellColor.Usefull,
 		            Level = 1,
 		            School = "1 уровень, ограждение",
 		            Time = "1 действие",
@@ -325,7 +325,7 @@ namespace Paladin.Services
                     Prepared = true,
                     HighSlot = true,
                     Title = "Лечащее слово",
-		            SpellColor = 1,
+		            SpellColor = SpellColor.Best,
 		            Level = 1,
 		            School = "1 уровень, воплощение",
 		            Time = "1 бонусное действие",
@@ -341,7 +341,7 @@ namespace Paladin.Services
                     Prepared = true,
                     HighSlot = true,
                     Title = "Лечение ран",
-		            SpellColor = 1,
+		            SpellColor = SpellColor.Best,
 		            Level = 1,
 		            School = "1 уровень, воплощение",
 		            Time = "1 действие",
@@ -356,7 +356,7 @@ namespace Paladin.Services
 	            {
 		            Title = "Нанесение ран",
                     HighSlot = true,
-                    SpellColor = 2,
+                    SpellColor = SpellColor.Usefull,
 		            Level = 1,
 		            School = "1 уровень, некромантия",
 		            Time = "1 действие",
@@ -372,7 +372,7 @@ namespace Paladin.Services
                     Prepared = true,
                     HighSlot = true,
                     Title = "Направленный снаряд",
-		            SpellColor = 1,
+		            SpellColor = SpellColor.Best,
 		            Level = 1,
 		            School = "1 уровень, воплощение",
 		            Time = "1 действие",
@@ -413,7 +413,7 @@ namespace Paladin.Services
 	            new SpellItem
 	            {
 		            Title = "Обнаружение магии",
-		            SpellColor = 2,
+		            SpellColor = SpellColor.Usefull,
 		            Level = 1,
 		            School = "1 уровень, прорицание (ритуал)",
 		            Ritual = true,
@@ -457,7 +457,7 @@ namespace Paladin.Services
 	            {
 		            Title = "Приказ",
                     HighSlot = true,
-                    SpellColor = 2,
+                    SpellColor = SpellColor.Usefull,
 		            Level = 1,
 		            School = "1 уровень, очарование",
 		            Time = "1 действие",
@@ -492,7 +492,7 @@ namespace Paladin.Services
 	            new SpellItem
 	            {
 		            Title = "Убежище",
-		            SpellColor = 1,
+		            SpellColor = SpellColor.Best,
 		            Level = 1,
 		            School = "1 уровень, ограждение",
 		            Time = "1 бонусное действие",
@@ -520,7 +520,7 @@ namespace Paladin.Services
                     Prepared = true,
                     HighSlot = true,
                     Title = "Божественное оружие",
-		            SpellColor = 1,
+		            SpellColor = SpellColor.Best,
 		            Level = 2,
 		            School = "2 уровень, воплощение",
 		            Time = "1 бонусное действие",
@@ -565,7 +565,7 @@ namespace Paladin.Services
 	            {
 		            Title = "Глухота/слепота",
                     HighSlot = true,
-                    SpellColor = 1,
+                    SpellColor = SpellColor.Best,
 		            Level = 2,
 		            School = "2 уровень, некромантия",
 		            Time = "1 действие",
@@ -604,7 +604,7 @@ namespace Paladin.Services
 	            {
 		            Title = "Молебен лечения",
                     HighSlot = true,
-                    SpellColor = 1,
+                    SpellColor = SpellColor.Best,
 		            Level = 2,
 		            School = "2 уровень, воплощение",
 		            Time = "10 минут",
@@ -656,7 +656,7 @@ namespace Paladin.Services
 	            {
 		            Title = "Подмога",
                     HighSlot = true,
-                    SpellColor = 1,
+                    SpellColor = SpellColor.Best,
 		            Level = 2,
 		            School = "2 уровень, ограждение",
 		            Time = "1 действие",
@@ -695,7 +695,7 @@ namespace Paladin.Services
 	            new SpellItem
 	            {
 		            Title = "Тишина",
-		            SpellColor = 1,
+		            SpellColor = SpellColor.Best,
 		            Level = 2,
 		            School = "2 уровень, иллюзия (ритуал)",
 		            Ritual = true,
@@ -726,7 +726,7 @@ namespace Paladin.Services
 	            {
 		            Title = "Улучшение характеристики",
                     HighSlot = true,
-                    SpellColor = 2,
+                    SpellColor = SpellColor.Usefull,
 		            Level = 2,
 		            School = "2 уровень, преобразование",
 		            Time = "1 действие",
@@ -763,7 +763,7 @@ namespace Paladin.Services
 	            new SpellItem
 	            {
 		            Title = "Возрождение",
-		            SpellColor = 2,
+		            SpellColor = SpellColor.Usefull,
 		            Level = 3,
 		            School = "3 уровень, некромантия",
 		            Time = "1 действие",
@@ -777,7 +777,7 @@ namespace Paladin.Services
 	            {
 		            Title = "Восставший труп",
                     HighSlot = true,
-                    SpellColor = 1,
+                    SpellColor = SpellColor.Best,
 		            Level = 3,
 		            School = "3 уровень, некромантия",
 		            Time = "1 минута",
@@ -806,7 +806,7 @@ namespace Paladin.Services
                     Prepared = true,
                     HighSlot = true,
                     Title = "Духовные стражи",
-		            SpellColor = 1,
+		            SpellColor = SpellColor.Best,
 		            Level = 3,
 		            School = "3 уровень, вызов",
 		            Time = "1 действие",
@@ -821,7 +821,7 @@ namespace Paladin.Services
 	            new SpellItem
 	            {
 		            Title = "Защита от энергии",
-		            SpellColor = 2,
+		            SpellColor = SpellColor.Usefull,
 		            Level = 3,
 		            School = "3 уровень, ограждение",
 		            Time = "1 действие",
@@ -853,7 +853,7 @@ namespace Paladin.Services
 	            new SpellItem
 	            {
 		            Title = "Маяк надежды",
-		            SpellColor = 2,
+		            SpellColor = SpellColor.Usefull,
 		            Level = 3,
 		            School = "3 уровень, ограждение",
 		            Time = "1 действие",
@@ -868,7 +868,7 @@ namespace Paladin.Services
 	            {
 		            Title = "Множественное лечащее слово",
                     HighSlot = true,
-                    SpellColor = 1,
+                    SpellColor = SpellColor.Best,
 		            Level = 3,
 		            School = "3 уровень, воплощение",
 		            Time = "1 бонусное действие",
@@ -883,7 +883,7 @@ namespace Paladin.Services
 	            {
 		            Title = "Охранные руны",
                     HighSlot = true,
-                    SpellColor = 1,
+                    SpellColor = SpellColor.Best,
 		            Level = 3,
 		            School = "3 уровень, ограждение",
 		            Time = "1 час",
@@ -912,7 +912,7 @@ namespace Paladin.Services
 	            new SpellItem
 	            {
 		            Title = "Послание",
-		            SpellColor = 1,
+		            SpellColor = SpellColor.Best,
 		            Level = 3,
 		            School = "3 уровень, воплощение",
 		            Time = "1 действие",
@@ -939,7 +939,7 @@ namespace Paladin.Services
 	            {
 		            Title = "Проклятие",
                     HighSlot = true,
-                    SpellColor = 2,
+                    SpellColor = SpellColor.Usefull,
 		            Level = 3,
 		            School = "3 уровень, некромантия",
 		            Time = "1 действие",
@@ -972,7 +972,7 @@ namespace Paladin.Services
 	            {
 		            Title = "Рассеивание магии",
                     HighSlot = true,
-                    SpellColor = 1,
+                    SpellColor = SpellColor.Best,
 		            Level = 3,
 		            School = "3 уровень, ограждение",
 		            Time = "1 действие",
@@ -999,7 +999,7 @@ namespace Paladin.Services
 	            new SpellItem
 	            {
 		            Title = "Снятие проклятья",
-		            SpellColor = 2,
+		            SpellColor = SpellColor.Usefull,
 		            Level = 3,
 		            School = "3 уровень, ограждение",
 		            Time = "1 действие",
@@ -1024,7 +1024,7 @@ namespace Paladin.Services
 	            new SpellItem
 	            {
 		            Title = "Хождение по воде",
-		            SpellColor = 2,
+		            SpellColor = SpellColor.Usefull,
 		            Level = 3,
 		            School = "3 уровень, преобразование (ритуал)",
 		            Ritual = true,
@@ -1051,7 +1051,7 @@ namespace Paladin.Services
 	            {
 		            Title = "Власть над водами",
                     HighSlot = true,
-                    SpellColor = 2,
+                    SpellColor = SpellColor.Usefull,
 		            Level = 4,
 		            School = "4 уровень, преобразование",
 		            Time = "1 действие",
@@ -1069,7 +1069,7 @@ namespace Paladin.Services
 	            new SpellItem
 	            {
 		            Title = "Защита от смерти",
-		            SpellColor = 1,
+		            SpellColor = SpellColor.Best,
 		            Level = 4,
 		            School = "4 уровень, ограждение",
 		            Time = "1 действие",
@@ -1083,7 +1083,7 @@ namespace Paladin.Services
 	            {
 		            Title = "Изгнание",
                     HighSlot = true,
-                    SpellColor = 2,
+                    SpellColor = SpellColor.Usefull,
 		            Level = 4,
 		            School = "4 уровень, ограждение",
 		            Time = "1 действие",
@@ -1098,7 +1098,7 @@ namespace Paladin.Services
 	            new SpellItem
 	            {
 		            Title = "Изменение формы камня",
-		            SpellColor = 1,
+		            SpellColor = SpellColor.Best,
 		            Level = 4,
 		            School = "4 уровень, преобразование",
 		            Time = "1 действие",
@@ -1138,7 +1138,7 @@ namespace Paladin.Services
 	            new SpellItem
 	            {
 		            Title = "Свобода перемещения",
-		            SpellColor = 2,
+		            SpellColor = SpellColor.Usefull,
 		            Level = 4,
 		            School = "4 уровень, ограждение",
 		            Time = "1 действие",

@@ -10,7 +10,7 @@ using Android.OS;
 namespace Paladin.Droid
 {
     [Activity(
-        Label = "Paladin", 
+        Label = "Громобород", 
         Icon = "@drawable/icon", 
         Theme = "@style/MainTheme", 
         MainLauncher = true, 

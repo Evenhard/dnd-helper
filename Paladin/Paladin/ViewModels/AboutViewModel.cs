@@ -10,6 +10,7 @@ namespace Paladin.ViewModels
     {
         public ICommand FillBaseCommand { get; }
         public ICommand DropBaseCommand { get; }
+        public ICommand CreateClericCommand { get; }
 
         public AboutViewModel()
         {
@@ -17,6 +18,7 @@ namespace Paladin.ViewModels
 
             FillBaseCommand = new Command(async() => await ClericSpells.FillDataBase());
             DropBaseCommand = new Command(async () => await App.Database.ClearSpellBase());
+            CreateClericCommand = new Command(async () => await CreateCharacter.NewCleric());
         }
 
     }

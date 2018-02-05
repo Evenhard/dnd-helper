@@ -30,7 +30,7 @@
                              HorizontalOptions="FillAndExpand"
                              VerticalOptions="CenterAndExpand"
                              Margin="10"
-                             Grid.Column="0" 
+                             Grid.Column="1" 
                              Grid.Row="0" >
                         
                     <Label Text="Текущие ХП:" 
@@ -39,7 +39,8 @@
                            HorizontalOptions="StartAndExpand"
                            Margin="0, 0, 0, 0"/>
 
-                    <Label Text="39/39" 
+                    <Label Text="{Binding currentHP}" 
+                           x:Name="CurrentHPLabel"
                            FontSize="16" 
                            HorizontalOptions="End"
                            Margin="0, 0, 0, 0"/>
@@ -49,7 +50,7 @@
                              HorizontalOptions="FillAndExpand"
                              VerticalOptions="CenterAndExpand"
                              Margin="10"
-                             Grid.Column="1" 
+                             Grid.Column="0" 
                              Grid.Row="0" >
 
                     <Label Text="Временные ХП:" 
@@ -58,7 +59,7 @@
                            HorizontalOptions="StartAndExpand"
                            Margin="0, 0, 0, 0"/>
 
-                    <Label Text="5" 
+                    <Label Text="{Binding temporaryHP}" 
                            FontSize="16" 
                            HorizontalOptions="End"
                            Margin="0, 0, 0, 0"/>
@@ -85,7 +86,7 @@
 
                 <Frame HorizontalOptions="FillAndExpand"
                        BackgroundColor="#B61C1A"
-                       CornerRadius="10"
+                       CornerRadius="5"
                        HeightRequest="10"
                        Margin="5, 5, 1.5, 5"
                        Grid.Column="0" 
@@ -94,11 +95,11 @@
                     <StackLayout Orientation="Horizontal" 
                                  HorizontalOptions="FillAndExpand"
                                  VerticalOptions="FillAndExpand"
-                                 Margin="-7, -12">
+                                 Margin="-7, -14">
 
                         <iconize:IconLabel Text="ion-android-hand"
                                            TextColor="White"
-                                           FontSize="26" 
+                                           FontSize="24" 
                                            HorizontalOptions="Start"
                                            VerticalOptions="CenterAndExpand"
                                            Margin="0"/>
@@ -113,13 +114,13 @@
                     </StackLayout>
 
                     <Frame.GestureRecognizers>
-                        <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding InputPopupCommand}" />
+                        <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding ShieldCommand}" />
                     </Frame.GestureRecognizers>
                 </Frame>
 
                 <Frame HorizontalOptions="FillAndExpand"
                        BackgroundColor="#B61C1A"
-                       CornerRadius="10"
+                       CornerRadius="5"
                        HeightRequest="10"
                        Margin="1.5, 5, 1.5, 5"
                        Grid.Column="1" 
@@ -128,11 +129,11 @@
                     <StackLayout Orientation="Horizontal" 
                                  HorizontalOptions="FillAndExpand"
                                  VerticalOptions="FillAndExpand"
-                                 Margin="-7, -12">
+                                 Margin="-7, -14">
 
                         <iconize:IconLabel Text="ion-heart"
                                            TextColor="White"
-                                           FontSize="26" 
+                                           FontSize="24" 
                                            HorizontalOptions="Start"
                                            VerticalOptions="CenterAndExpand"
                                            Margin="0"/>
@@ -145,11 +146,15 @@
                                Margin="0"/>
 
                     </StackLayout>
+
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding HealCommand}" />
+                    </Frame.GestureRecognizers>
                 </Frame>
 
                 <Frame HorizontalOptions="FillAndExpand"
                        BackgroundColor="#B61C1A"
-                       CornerRadius="10"
+                       CornerRadius="5"
                        HeightRequest="10"
                        Margin="1.5, 5, 5, 5"
                        Grid.Column="2" 
@@ -158,11 +163,11 @@
                     <StackLayout Orientation="Horizontal" 
                                  HorizontalOptions="FillAndExpand"
                                  VerticalOptions="FillAndExpand"
-                                 Margin="-7, -12">
+                                 Margin="-7, -14">
 
                         <iconize:IconLabel Text="ion-heart-broken"
                                            TextColor="White"
-                                           FontSize="26" 
+                                           FontSize="24" 
                                            HorizontalOptions="Start"
                                            VerticalOptions="CenterAndExpand"
                                            Margin="0"/>
@@ -175,6 +180,10 @@
                                Margin="0"/>
 
                     </StackLayout>
+
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding DamageCommand}" />
+                    </Frame.GestureRecognizers>
                 </Frame>
             </Grid>
 

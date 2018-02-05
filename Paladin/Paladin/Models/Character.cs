@@ -14,9 +14,9 @@ namespace Paladin.Models
         public string Name { get; set; }
         public int Level { get; set; }
         public int HP { get; set; }
-        public int TemporalHP { get; set; }
         public int HitDices { get; set; }
         public Classes Class { get; set; }
+        public int Subclass { get; set; }
         public List<Slot> Slots { get; set; }
     }
 
@@ -36,8 +36,32 @@ namespace Paladin.Models
         Wizzard
     }
 
+    public enum Barbarian
+    {
+        Berserk,
+        Totem
+    }
+
+    public enum Bard
+    {
+        Lore,
+        Valor
+    }
+
+    public enum Cleric
+    {
+        Temperst,
+        War,
+        Life,
+        Knowledge,
+        Trickery,
+        Nature,
+        Light
+    }
+
     public class Slot
     {
+        public int Level { get; set; }
         public string Title { get; set; }
         public int Amount { get; set; }
     }

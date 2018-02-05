@@ -29,6 +29,7 @@ namespace Paladin.Services
             database = new SQLiteAsyncConnection(DependencyService.Get<IFileHelper>().GetLocalFilePath("paladin.db"));
 
             database.CreateTableAsync<SpellItem>(CreateFlags.ImplicitPK);
+            database.CreateTableAsync<Character>(CreateFlags.ImplicitPK);
         }
 
         public Task<List<SpellItem>> GetSpellsList()
@@ -63,7 +64,17 @@ namespace Paladin.Services
             foreach (var item in list)
                 await database.InsertAsync(item);
         }
-        
+
+        public async Task FillCharacter (Character hero)
+        {
+            await database.CreateTableAsync<Character>(CreateFlags.ImplicitPK);
+            await database.InsertAsync(hero);
+        }
+
+        public Task<Character> GetClericGunter()
+        {
+            return database.Table<Character>().Where(i => i.Id == 0).FirstOrDefaultAsync();
+        }
 
 
         //public Task SaveSpellAsync(SpellItem item)

@@ -24,7 +24,13 @@
                     Command="{Binding DropBaseCommand}" 
                     BackgroundColor="{StaticResource Primary}" 
                     TextColor="White" />
-            
+
+            <Button Margin="0, 10, 0, 0" 
+                    Text="Создать клерика" 
+                    Command="{Binding CreateClericCommand}" 
+                    BackgroundColor="{StaticResource Primary}" 
+                    TextColor="White" />
+
         </StackLayout>
     </ScrollView>
 </ContentPage>

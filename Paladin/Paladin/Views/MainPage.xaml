@@ -8,25 +8,25 @@
     <views:AboutPage />-->
 
     <TabbedPage.Children>
-        <NavigationPage Icon="menu3.png">
+        <NavigationPage Icon="Helm.png">
             <x:Arguments>
                 <views:CharacterPage />
             </x:Arguments>
         </NavigationPage>        
 
-        <NavigationPage Icon="menu2.png">
+        <NavigationPage Icon="FlameHand.png">
             <x:Arguments>
                 <views:PreparedPage />
             </x:Arguments>
         </NavigationPage>
 
-        <NavigationPage Icon="menu1.png">
+        <NavigationPage Icon="SpellBook.png">
             <x:Arguments>
                 <views:ItemsPage />
             </x:Arguments>
         </NavigationPage>
 
-        <NavigationPage Icon="menu4.png">
+        <NavigationPage Icon="Scroll.png">
             <x:Arguments>
                 <views:AboutPage />
             </x:Arguments>

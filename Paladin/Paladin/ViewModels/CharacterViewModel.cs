@@ -3,6 +3,7 @@ using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,21 @@ namespace Paladin.ViewModels
 {
     public class CharacterViewModel : BaseViewModel
     {
+        private int MaxHP { get; set; }
+        private int CurrentHP { get; set; }
+        public int currentHP
+        {
+            get { return CurrentHP; }
+            set { CurrentHP = value; base.OnPropertyChanged(); }
+        }
+
+        private int TemporaryHP { get; set; } = 0;
+        public int temporaryHP
+        {
+            get { return TemporaryHP; }
+            set { TemporaryHP = value; base.OnPropertyChanged(); }
+        }
+
         public class Feat
         {
             public string Title { get; set; }
@@ -22,7 +38,7 @@ namespace Paladin.ViewModels
         public class FeatList : List<Feat>
         {
             public string Heading { get; set; }
-            public List<Feat> Persons => this;
+            public List<Feat> Feats => this;
         }
 
         private List<FeatList> _listOfFeats;
@@ -33,7 +49,10 @@ namespace Paladin.ViewModels
         }
 
         public Command LoadItemsCommand { get; set; }
-        public ICommand InputPopupCommand { get; }
+
+        public ICommand ShieldCommand { get; }
+        public ICommand HealCommand { get; }
+        public ICommand DamageCommand { get; }
 
         public CharacterViewModel()
         {
@@ -41,35 +60,46 @@ namespace Paladin.ViewModels
             ListOfFeats = new List<FeatList>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 
-            InputPopupCommand = new Command(async (e) => 
+            ShieldCommand = new Command(async (e) => 
             {
-                var result = await ExecuteInputPopup();
-                Debug.WriteLine("**** ****: " + result);
-            } );
+                temporaryHP += await ExecuteInputPopup("Получено временных хит поинтов:");
+            });
+
+            HealCommand = new Command(async (e) =>
+            {
+                currentHP += await ExecuteInputPopup("Вылечено хит поинтов:");
+            });
+
+            DamageCommand = new Command(async (e) =>
+            {
+                var damage = await ExecuteInputPopup("Получено урона:");
+
+                if (temporaryHP > 0)
+                {
+                    if (temporaryHP > damage)
+                        temporaryHP -= damage;
+                    else
+                    {
+                        currentHP -= damage - temporaryHP;
+                        temporaryHP = 0;
+                    }                        
+                }
+                else
+                    currentHP -= damage;
+            });
         }
 
-        private async Task<string> ExecuteInputPopup()
+        private async Task<int> ExecuteInputPopup(string Title)
         {
-            // create the TextInputView
-            var inputView = new TextInputView(
-                "Введите значение:", 
-                "Введите текст...",
-                "Поле ввода не должно быть пустым!",
-                "Ок");
+            var inputView = new TextInputView(Title);
+            var popup = new InputAlertDialogBase<int>(inputView);
 
-            // create the Transparent Popup Page
-            // of type string since we need a string return
-            var popup = new InputAlertDialogBase<string>(inputView);
-
-            // subscribe to the TextInputView's Button click event
             inputView.CloseButtonEventHandler +=
                 (sender, obj) =>
                 {
-                    if (!string.IsNullOrEmpty(((TextInputView)sender).TextInputResult))
+                    if (((TextInputView)sender).TextInputResult != 0)
                     {
                         ((TextInputView)sender).IsValidationLabelVisible = false;
-
-                        // update the page completion source
                         popup.PageClosedTaskCompletionSource.SetResult(((TextInputView)sender).TextInputResult);
                     }
                     else
@@ -78,16 +108,10 @@ namespace Paladin.ViewModels
                     }
                 };
 
-            // Push the page to Navigation Stack
             await PopupNavigation.PushAsync(popup);
-
-            // await for the user to enter the text input
             var result = await popup.PageClosedTask;
-
-            // Pop the page from Navigation Stack
             await PopupNavigation.PopAsync();
 
-            // return user inserted text value
             return result;
         }
 
@@ -103,6 +127,14 @@ namespace Paladin.ViewModels
                 //========================================================
                 //============Прикрутить=загрузку=из=базы=================
                 //========================================================
+
+                try
+                {
+                    var character = await App.Database.GetClericGunter();
+                }
+                catch (Exception e) { Debug.WriteLine("==== ==== Создание Гунтера: " + e.Message); }
+
+                currentHP = MaxHP = 75;
 
                 var slotList = new FeatList()
                 {

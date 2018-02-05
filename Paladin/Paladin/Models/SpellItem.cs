@@ -27,7 +27,7 @@ namespace Paladin.Models
         public bool Ritual { get; set; } = false;
 
         [Column("SpellColor")]
-        public int SpellColor { get; set; } = 3;
+        public SpellColor SpellColor { get; set; } = SpellColor.Bad;
 
         public string Title { get; set; }
         public string School { get; set; }
@@ -37,5 +37,12 @@ namespace Paladin.Models
         public string Components { get; set; }
         public string Duration { get; set; }
         public string Description { get; set; }
+    }
+
+    public enum SpellColor
+    {
+        Best = 1,
+        Usefull = 2,
+        Bad = 3
     }
 }
