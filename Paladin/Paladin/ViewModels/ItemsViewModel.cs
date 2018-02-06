@@ -35,22 +35,7 @@ namespace Paladin.ViewModels
                     var index = Items.IndexOf(spell);
                     spell.Prepared = !spell.Prepared;
 
-                    //=================ТУПЫЕ ГРАБЛИ====================
-                    Items.RemoveAt(index);
-                    await Task.Delay(1);
-                    Items.Insert(index, spell);
-                    //=================================================
-
                     await App.Database.PrepareSpell(spell);
-
-                    //var prepare = spell.Prepared ? "убрать из подготовленных" : "подготовить";
-                    //var answer = await App.Current.MainPage.DisplayAlert(
-                    //    "Внимание", "Вы действительно хотите " + prepare + " заклинание " + spell.Title + "?", "Да", "Нет");
-                    //if (answer)
-                    //{
-                    //    spell.Prepared = !spell.Prepared;
-                    //    await App.Database.PrepareSpell(spell);
-                    //}
                 });
             }
         }

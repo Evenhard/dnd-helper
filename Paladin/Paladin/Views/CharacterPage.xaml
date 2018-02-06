@@ -5,6 +5,23 @@
              x:Class="Paladin.Views.CharacterPage"
              Title="{Binding Title}"
              x:Name="BrowseCharacterPage">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Name="MenuItem1"
+                     Clicked="Toolbar1Clicked"
+                     Order="Primary" 
+                     Icon="Card.png" 
+                     Text="Персонаж" 
+                     Priority="0" />
+
+        <ToolbarItem Name="MenuItem2"
+                     Clicked="Toolbar2Clicked"
+                     Order="Primary" 
+                     Icon="Campfire.png" 
+                     Text="Отдых" 
+                     Priority="1" />
+    </ContentPage.ToolbarItems>
+
     <ContentPage.Content>
         
         <StackLayout BackgroundColor="#F3F0E9" Spacing="0">
@@ -26,26 +43,6 @@
                     <RowDefinition Height="50"/>
                 </Grid.RowDefinitions>
 
-                <StackLayout Orientation="Horizontal"
-                             HorizontalOptions="FillAndExpand"
-                             VerticalOptions="CenterAndExpand"
-                             Margin="10"
-                             Grid.Column="1" 
-                             Grid.Row="0" >
-                        
-                    <Label Text="Текущие ХП:" 
-                           FontAttributes="Bold"
-                           FontSize="16" 
-                           HorizontalOptions="StartAndExpand"
-                           Margin="0, 0, 0, 0"/>
-
-                    <Label Text="{Binding currentHP}" 
-                           x:Name="CurrentHPLabel"
-                           FontSize="16" 
-                           HorizontalOptions="End"
-                           Margin="0, 0, 0, 0"/>
-                </StackLayout>
-
                 <StackLayout Orientation="Horizontal" 
                              HorizontalOptions="FillAndExpand"
                              VerticalOptions="CenterAndExpand"
@@ -64,6 +61,38 @@
                            HorizontalOptions="End"
                            Margin="0, 0, 0, 0"/>
                 </StackLayout>
+                
+                <StackLayout Orientation="Horizontal"
+                             HorizontalOptions="FillAndExpand"
+                             VerticalOptions="CenterAndExpand"
+                             Margin="10"
+                             Grid.Column="1" 
+                             Grid.Row="0" >
+                        
+                    <Label Text="Текущие ХП:" 
+                           FontAttributes="Bold"
+                           FontSize="16" 
+                           HorizontalOptions="StartAndExpand"
+                           Margin="0, 0, 0, 0"/>
+
+                    <Label Text="{Binding currentHP}" 
+                           x:Name="CurrentHPLabel"
+                           FontSize="16" 
+                           HorizontalOptions="End"
+                           Margin="0, 0, 0, 0"/>
+
+                    <Label Text="/" 
+                           FontSize="16" 
+                           HorizontalOptions="End"
+                           Margin="-6, 0"/>
+
+                    <Label Text="{Binding maxHP}" 
+                           x:Name="MaxHPLabel"
+                           FontSize="16" 
+                           HorizontalOptions="End"
+                           Margin="0, 0, 0, 0"/>                    
+                </StackLayout>
+
             </Grid>
 
             <Grid ColumnSpacing="0" 
@@ -188,12 +217,15 @@
             </Grid>
 
             <ListView ItemsSource="{Binding ListOfFeats}"
-                      VerticalOptions="CenterAndExpand"
+                      x:Name="ItemsListView"
+                      VerticalOptions="FillAndExpand"
                       Margin="0"
+                      CachingStrategy="RecycleElement"
                       BackgroundColor="#F3F0E9"
                       SeparatorVisibility="None"
                       SeparatorColor="Transparent"
-                      IsGroupingEnabled="true">
+                      IsGroupingEnabled="true"
+                      ItemSelected="OnItemSelected">
                 
                 <ListView.GroupHeaderTemplate>
                     <DataTemplate>
@@ -201,13 +233,21 @@
 
                             <StackLayout HeightRequest="35"
                                          Margin="0, 0, 0, 0"
-                                         BackgroundColor="White">
+                                         BackgroundColor="White"
+                                         Orientation="Horizontal">
                                 
                                 <Label Text="{Binding Heading}" 
                                        FontSize="20"
                                        Margin="10, 0, 0, 5"
                                        FontAttributes="Bold"
-                                       VerticalOptions="EndAndExpand"/>
+                                       VerticalOptions="EndAndExpand"
+                                       HorizontalOptions="Start"/>
+
+                                <Label Text="{Binding Description}" 
+                                       FontSize="20"
+                                       Margin="0, 0, 50, 5"
+                                       VerticalOptions="EndAndExpand"
+                                       HorizontalOptions="EndAndExpand"/>
                             </StackLayout>
                             
                         </ViewCell>
@@ -219,52 +259,53 @@
                         <ViewCell>
                             
                             <StackLayout Orientation="Horizontal" 
+                                         x:Name="ItemViewCell"
                                          BackgroundColor="White"
                                          HeightRequest="25"
                                          Margin="0.5, 0.5">
                                 
                                 <Label Text="{Binding Title}" 
                                        FontSize="18"
-                                       Margin="10, 0, 0, 0"
+                                       WidthRequest="250"
+                                       Margin="10, 0, 5, 0"
                                        HorizontalOptions="StartAndExpand"
                                        VerticalOptions="CenterAndExpand"/>
                                 
                                 <!--  ion-android-add-circle  -->
                                 <!--  ion-android-remove-circle  -->
-                                <Label Text="{Binding Decription}"
+                                <Label Text="{Binding Description}"
                                        FontSize="20"
-                                       Margin="0, 0, 10, 0"
+                                       Margin="0"
                                        HorizontalOptions="End"
+                                       HorizontalTextAlignment="Center"
                                        VerticalOptions="CenterAndExpand"/>
+
+                                <iconize:IconLabel Text="ion-android-remove-circle" 
+                                                   FontSize="30"
+                                                   HorizontalOptions="End"
+                                                   VerticalOptions="CenterAndExpand"
+                                                   IsVisible="{Binding DescriptionVisible}"
+                                                   Margin="10, 0">
+
+                                    <iconize:IconLabel.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding UseFeatCommand}" 
+                                                              CommandParameter="{Binding Source={x:Reference ItemViewCell}, Path=BindingContext}" 
+                                                              BindingContext="{Binding Source={x:Reference ItemsListView}, Path=BindingContext}"
+                                                              NumberOfTapsRequired="1" />
+                                    </iconize:IconLabel.GestureRecognizers>
+
+                                </iconize:IconLabel>
                             </StackLayout>
                             
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
+
+                <ListView.Footer>
+                    <ContentView HeightRequest="10" BackgroundColor="White" />
+                </ListView.Footer>
+
             </ListView>
-
-            <StackLayout VerticalOptions="End"
-                         Orientation="Horizontal"
-                         BackgroundColor="White">
-
-                <Label Text="Отдых"
-                       FontAttributes="Bold"
-                       HorizontalOptions="Start"
-                       VerticalOptions="Center"
-                       Margin="10, 0"
-                       FontSize="22"/>
-
-                <iconize:IconLabel Text="ion-refresh"
-                                   FontSize="38"
-                                   HorizontalOptions="EndAndExpand"
-                                   Margin="0, 10, 10, 10"/>
-
-                <iconize:IconLabel Text="ion-bonfire"
-                                   FontSize="38"
-                                   HorizontalOptions="End"
-                                   Margin="10, 10, 20, 10"/>
-            </StackLayout>
-            
         </StackLayout>
 
     </ContentPage.Content>

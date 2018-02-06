@@ -1,4 +1,6 @@
 ﻿using Paladin.AlertPopup;
+using Paladin.Models;
+using Paladin.Services;
 using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
@@ -15,6 +17,12 @@ namespace Paladin.ViewModels
     public class CharacterViewModel : BaseViewModel
     {
         private int MaxHP { get; set; }
+        public int maxHP
+        {
+            get { return MaxHP; }
+            set { MaxHP = value; base.OnPropertyChanged(); }
+        }
+
         private int CurrentHP { get; set; }
         public int currentHP
         {
@@ -27,22 +35,29 @@ namespace Paladin.ViewModels
         {
             get { return TemporaryHP; }
             set { TemporaryHP = value; base.OnPropertyChanged(); }
-        }
+        }        
 
-        public class Feat
-        {
-            public string Title { get; set; }
-            public string Decription { get; set; }
-        }
-
-        public class FeatList : List<Feat>
+        public class FeatList : ObservableCollection<Feat>, INotifyPropertyChanged
         {
             public string Heading { get; set; }
-            public List<Feat> Feats => this;
+            public string Description
+            {
+                get { return description; }
+                set { description = value; OnPropertyChanged("Description"); }
+            }
+            private string description { get; set; }
+            public ObservableCollection<Feat> Feats => this;
+
+            public event PropertyChangedEventHandler PropertyChanged;
+
+            protected virtual void OnPropertyChanged(string propertyName)
+            {
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            }
         }
 
-        private List<FeatList> _listOfFeats;
-        public List<FeatList> ListOfFeats
+        private ObservableCollection<FeatList> _listOfFeats;
+        public ObservableCollection<FeatList> ListOfFeats
         {
             get { return _listOfFeats; }
             set { _listOfFeats = value; base.OnPropertyChanged(); }
@@ -54,25 +69,59 @@ namespace Paladin.ViewModels
         public ICommand HealCommand { get; }
         public ICommand DamageCommand { get; }
 
+        public ICommand UseFeatCommand
+        {
+            get
+            {
+                return new Command(async (e) =>
+                {
+                    var feat = (e as Feat);
+                    try
+                    {
+                        if (feat.TypeTop)
+                        {
+                            var list = ListOfFeats[2];
+                            var descr = list.Description;
+                            string[] words = descr.Split(new char[] { '/' }, StringSplitOptions.RemoveEmptyEntries);
+                            var leftNum = Int32.Parse(words[0]);
+                            var rightNum = Int32.Parse(words[1]);
+
+                            ListOfFeats[2].Description = leftNum > 0 ? --leftNum + "/" + rightNum : ListOfFeats[2].Description;
+                        }
+                        else
+                        {
+                            var descr = feat.Description;
+                            string[] words = descr.Split(new char[] { '/' }, StringSplitOptions.RemoveEmptyEntries);
+                            var leftNum = Int32.Parse(words[0]);
+                            var rightNum = Int32.Parse(words[1]);
+
+                            feat.Description = leftNum > 0 ? --leftNum + "/" + rightNum : feat.Description;
+                        }
+                    }
+                    catch (Exception exc) { Debug.WriteLine("==== ==== UseFeatCommand: " + exc.Message); }
+                });
+            }
+        }
+
         public CharacterViewModel()
         {
-            Title = "Гунтер Громобород";
-            ListOfFeats = new List<FeatList>();
+            ListOfFeats = new ObservableCollection<FeatList>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 
             ShieldCommand = new Command(async (e) => 
             {
-                temporaryHP += await ExecuteInputPopup("Получено временных хит поинтов:");
+                temporaryHP += await ExecuteInputPopup("Получено временных хит поинтов");
             });
 
             HealCommand = new Command(async (e) =>
             {
-                currentHP += await ExecuteInputPopup("Вылечено хит поинтов:");
+                currentHP += await ExecuteInputPopup("Вылечено хит поинтов");
+                if (currentHP > maxHP) currentHP = maxHP;
             });
 
             DamageCommand = new Command(async (e) =>
             {
-                var damage = await ExecuteInputPopup("Получено урона:");
+                var damage = await ExecuteInputPopup("Получено урона");
 
                 if (temporaryHP > 0)
                 {
@@ -124,51 +173,47 @@ namespace Paladin.ViewModels
 
             try
             {
-                //========================================================
-                //============Прикрутить=загрузку=из=базы=================
-                //========================================================
+                var chars = await App.Database.GetCharactersList();
+                var character = chars[0];
 
-                try
+                this.Title = character.Name + ", " + character.Level + " ур.";
+                currentHP = maxHP = character.HP;
+
+                //СЛОТЫ
+                var slotList = new FeatList();
+                var slots = CreateCharacter.GetClericSlots(character.Level);
+                foreach (var slot in slots)
                 {
-                    var character = await App.Database.GetClericGunter();
-                }
-                catch (Exception e) { Debug.WriteLine("==== ==== Создание Гунтера: " + e.Message); }
-
-                currentHP = MaxHP = 75;
-
-                var slotList = new FeatList()
-                {
-                    new Feat() { Title = "Слоты 1:", Decription = "4/4" },
-                    new Feat() { Title = "Слоты 2:", Decription = "3/3" },
-                    new Feat() { Title = "Слоты 3:", Decription = "3/3" }
-                };
+                    slotList.Add(new Feat() { Title = slot.Title, Description = slot.Amount + "/" + slot.Amount });
+                }                
                 slotList.Heading = "Слоты заклинаний:";
-
-                var clericList = new FeatList()
-                {
-                    new Feat() { Title = "Изгнание нежити", Decription = "2/2" },
-                    new Feat() { Title = "Разрушительный гнев", Decription = "2/2" }
-                };
-                clericList.Heading = "Божественный канал:";
 
                 var domainList = new FeatList()
                 {
-                    new Feat() { Title = "Гнев бури (реакция), спас Ловк. 2к8/пол.", Decription = "Муд." },
-                    new Feat() { Title = "Удар грома, толчок 10 футов", Decription = "-" }
+                    new Feat() { Title = "Гнев бури (реакция), спас Ловк. 2к8/пол.", Description = "4/4" },
+                    new Feat() { Title = "Удар грома, толчок 10 футов", DescriptionVisible = false }
                 };
                 domainList.Heading = "Домен бури:";
 
+                var clericList = new FeatList()
+                {
+                    new Feat() { Title = "Изгнание нежити", TypeTop = true },
+                    new Feat() { Title = "Разрушительный гнев", TypeTop = true }
+                };
+                clericList.Heading = "Божественный канал:";
+                clericList.Description = "2/2";
+
                 var healingList = new FeatList()
                 {
-                    new Feat() { Title = "Использований: ", Decription = "6/6" }
+                    new Feat() { Title = "Использований: ", Description = character.HitDices + "/" + character.HitDices }
                 };
-                healingList.Heading = "Кубы восстановления:";
+                healingList.Heading = "Кубики хитов:";
 
-                var list = new List<FeatList>()
+                var list = new ObservableCollection<FeatList>()
                 {
                     slotList,
-                    clericList,
                     domainList,
+                    clericList,
                     healingList
                 };
 

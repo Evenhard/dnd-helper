@@ -71,9 +71,14 @@ namespace Paladin.Services
             await database.InsertAsync(hero);
         }
 
-        public Task<Character> GetClericGunter()
+        public Task<List<Character>> GetCharactersList()
         {
-            return database.Table<Character>().Where(i => i.Id == 0).FirstOrDefaultAsync();
+            return database.Table<Character>().ToListAsync();
+        }
+
+        public Task<Character> GetClericGunter(int id)
+        {
+            return database.Table<Character>().Where(i => i.Id == id).FirstOrDefaultAsync();
         }
 
 

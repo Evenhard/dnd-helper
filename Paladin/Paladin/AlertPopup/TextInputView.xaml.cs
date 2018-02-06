@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -49,6 +49,9 @@ namespace Paladin.AlertPopup
             }
         }
 
+        public ICommand RemoveCommand { get; }
+        public ICommand AddCommand { get; }
+
         public TextInputView (string titleText)
 		{
 			InitializeComponent ();
@@ -62,6 +65,28 @@ namespace Paladin.AlertPopup
             // handling events to expose to public
             CloseButton.Clicked += CloseButton_Clicked;
             InputEntry.TextChanged += InputEntry_TextChanged;
+
+            RemoveCommand = new Command(() =>
+            {
+                try
+                {
+                    var number = Int32.Parse(InputEntry.Text);
+                    number = number > 0 ? --number : number;
+                    InputEntry.Text = number.ToString();
+                }
+                catch { }
+            });
+
+            AddCommand = new Command(() => 
+            {
+                try
+                {
+                    var number = Int32.Parse(InputEntry.Text);
+                    ++number;
+                    InputEntry.Text = number.ToString();
+                }
+                catch { }
+            });
         }
 
         private void CloseButton_Clicked(object sender, EventArgs e)

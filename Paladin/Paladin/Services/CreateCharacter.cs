@@ -10,8 +10,6 @@ namespace Paladin.Services
     {
         public static async Task NewCleric()
         {
-            var ListOfSlots = new List<Slot>();
-
             var character = new Character()
             {
                 Name = "Вася",
@@ -23,8 +21,20 @@ namespace Paladin.Services
                 //Slots
             };
 
-            switch (character.Level)
+            await App.Database.FillCharacter(character);
+            var answer = await App.Current.MainPage.DisplayAlert("Внимание", "Ваш герой успешно создан", null, "Ок");
+        }
+
+        public static List<Slot> GetClericSlots(int level)
+        {
+            var ListOfSlots = new List<Slot>();
+
+            switch (level)
             {
+                default:
+                    ListOfSlots.Clear();
+                    return ListOfSlots;
+
                 case 1:
                     ListOfSlots.Clear();
 
@@ -35,8 +45,7 @@ namespace Paladin.Services
                         Amount = 2
                     });
 
-                    character.Slots = ListOfSlots;
-                    break;
+                    return ListOfSlots;
 
                 case 2:
                     ListOfSlots.Clear();
@@ -48,8 +57,7 @@ namespace Paladin.Services
                         Amount = 3
                     });
 
-                    character.Slots = ListOfSlots;
-                    break;
+                    return ListOfSlots;
 
                 case 3:
                     ListOfSlots.Clear();
@@ -68,8 +76,7 @@ namespace Paladin.Services
                         Amount = 2
                     });
 
-                    character.Slots = ListOfSlots;
-                    break;
+                    return ListOfSlots;
 
                 case 4:
                     ListOfSlots.Clear();
@@ -88,8 +95,7 @@ namespace Paladin.Services
                         Amount = 3
                     });
 
-                    character.Slots = ListOfSlots;
-                    break;
+                    return ListOfSlots;
 
                 case 5:
                     ListOfSlots.Clear();
@@ -115,8 +121,7 @@ namespace Paladin.Services
                         Amount = 2
                     });
 
-                    character.Slots = ListOfSlots;
-                    break;
+                    return ListOfSlots;
 
                 case 6:
                     ListOfSlots.Clear();
@@ -142,8 +147,7 @@ namespace Paladin.Services
                         Amount = 3
                     });
 
-                    character.Slots = ListOfSlots;
-                    break;
+                    return ListOfSlots;
 
                 case 7:
                     ListOfSlots.Clear();
@@ -176,8 +180,7 @@ namespace Paladin.Services
                         Amount = 1
                     });
 
-                    character.Slots = ListOfSlots;
-                    break;
+                    return ListOfSlots;
 
                 case 8:
                     ListOfSlots.Clear();
@@ -210,8 +213,7 @@ namespace Paladin.Services
                         Amount = 2
                     });
 
-                    character.Slots = ListOfSlots;
-                    break;
+                    return ListOfSlots;
 
                 case 9:
                     ListOfSlots.Clear();
@@ -251,8 +253,7 @@ namespace Paladin.Services
                         Amount = 1
                     });
 
-                    character.Slots = ListOfSlots;
-                    break;
+                    return ListOfSlots;
 
                 case 10:
                     ListOfSlots.Clear();
@@ -292,8 +293,7 @@ namespace Paladin.Services
                         Amount = 2
                     });
 
-                    character.Slots = ListOfSlots;
-                    break;
+                    return ListOfSlots;
 
                 case 11:
                     ListOfSlots.Clear();
@@ -340,8 +340,7 @@ namespace Paladin.Services
                         Amount = 1
                     });
 
-                    character.Slots = ListOfSlots;
-                    break;
+                    return ListOfSlots;
 
                 case 12:
                     ListOfSlots.Clear();
@@ -388,8 +387,7 @@ namespace Paladin.Services
                         Amount = 1
                     });
 
-                    character.Slots = ListOfSlots;
-                    break;
+                    return ListOfSlots;
 
                 case 13:
                     ListOfSlots.Clear();
@@ -443,8 +441,7 @@ namespace Paladin.Services
                         Amount = 1
                     });
 
-                    character.Slots = ListOfSlots;
-                    break;
+                    return ListOfSlots;
 
                 case 14:
                     ListOfSlots.Clear();
@@ -498,8 +495,7 @@ namespace Paladin.Services
                         Amount = 1
                     });
 
-                    character.Slots = ListOfSlots;
-                    break;
+                    return ListOfSlots;
 
                 case 15:
                     ListOfSlots.Clear();
@@ -560,8 +556,7 @@ namespace Paladin.Services
                         Amount = 1
                     });
 
-                    character.Slots = ListOfSlots;
-                    break;
+                    return ListOfSlots;
 
                 case 16:
                     ListOfSlots.Clear();
@@ -622,8 +617,7 @@ namespace Paladin.Services
                         Amount = 1
                     });
 
-                    character.Slots = ListOfSlots;
-                    break;
+                    return ListOfSlots;
 
                 case 17:
                     ListOfSlots.Clear();
@@ -691,8 +685,7 @@ namespace Paladin.Services
                         Amount = 1
                     });
 
-                    character.Slots = ListOfSlots;
-                    break;
+                    return ListOfSlots;
 
                 case 18:
                     ListOfSlots.Clear();
@@ -760,8 +753,7 @@ namespace Paladin.Services
                         Amount = 1
                     });
 
-                    character.Slots = ListOfSlots;
-                    break;
+                    return ListOfSlots;
 
                 case 19:
                     ListOfSlots.Clear();
@@ -829,8 +821,7 @@ namespace Paladin.Services
                         Amount = 1
                     });
 
-                    character.Slots = ListOfSlots;
-                    break;
+                    return ListOfSlots;
 
                 case 20:
                     ListOfSlots.Clear();
@@ -898,12 +889,8 @@ namespace Paladin.Services
                         Amount = 1
                     });
 
-                    character.Slots = ListOfSlots;
-                    break;
+                    return ListOfSlots;
             }
-
-            await App.Database.FillCharacter(character);
-            var answer = await App.Current.MainPage.DisplayAlert("Внимание", "Ваш герой успешно создан", null, "Ок");
         }
     }
 }

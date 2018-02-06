@@ -18,8 +18,11 @@
 
             <Label x:Name="PreparedLabel" 
                    Text="Подготовлено: 7/7"
+                   FontSize="Medium"
+                   HeightRequest="35"
                    Margin="5, 5, 5, -5" 
                    BackgroundColor="White"
+                   VerticalTextAlignment="Center"
                    HorizontalOptions="FillAndExpand"
                    HorizontalTextAlignment="Center"/>
 

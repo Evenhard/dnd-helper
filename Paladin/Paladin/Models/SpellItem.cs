@@ -1,18 +1,24 @@
 ﻿using SQLite;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 
 namespace Paladin.Models
 {
     [Table("Spells")]
-    public class SpellItem
+    public class SpellItem : INotifyPropertyChanged
     {
         [SQLite.PrimaryKey, SQLite.AutoIncrement, SQLite.Column("_id")]
         public int Id { get; set; }
 
         [Column("Prepared")]
-        public bool Prepared { get; set; } = false;
+        public bool Prepared
+        {
+            get { return prepared; }
+            set { prepared = value; OnPropertyChanged("Prepared"); }
+        }
+        private bool prepared { get; set; } = false;
 
         [Column("ClassSpell")]
         public bool ClassSpell { get; set; } = false;
@@ -37,6 +43,13 @@ namespace Paladin.Models
         public string Components { get; set; }
         public string Duration { get; set; }
         public string Description { get; set; }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 
     public enum SpellColor

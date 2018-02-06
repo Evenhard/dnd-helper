@@ -1,6 +1,7 @@
 ﻿using SQLite;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 
 namespace Paladin.Models
@@ -17,7 +18,27 @@ namespace Paladin.Models
         public int HitDices { get; set; }
         public Classes Class { get; set; }
         public int Subclass { get; set; }
-        public List<Slot> Slots { get; set; }
+
+    }
+
+    public class Feat : INotifyPropertyChanged
+    {
+        public string Title { get; set; }
+        public bool TypeTop { get; set; } = false;
+        public bool DescriptionVisible { get; set; } = true;
+        public string Description
+        {
+            get { return description; }
+            set { description = value; OnPropertyChanged("Description"); }
+        }
+        private string description { get; set; }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 
     public enum Classes
