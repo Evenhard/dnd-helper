@@ -26,6 +26,12 @@
             </x:Arguments>
         </NavigationPage>
 
+        <NavigationPage Icon="Chest.png">
+            <x:Arguments>
+                <views:InventoryPage />
+            </x:Arguments>
+        </NavigationPage>
+
         <NavigationPage Icon="Scroll.png">
             <x:Arguments>
                 <views:AboutPage />

@@ -21,7 +21,7 @@
             <Label x:Name="ValidationLabel"
                    FontSize="Small"
                    IsVisible="False"
-                   Text="Поле ввода не должно быть пустым!"
+                   Text="Поле ввода не должно быть пустым или иметь отрицательное значение!"
                    HorizontalOptions="CenterAndExpand"
                    HorizontalTextAlignment="Center"
                    Margin="30, -5, 15, 10"
@@ -36,7 +36,7 @@
                                    Margin="10, 0">
 
                     <iconize:IconLabel.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding RemoveCommand}" 
+                        <TapGestureRecognizer Tapped="RemoveTap"
                                               NumberOfTapsRequired="1" />
                     </iconize:IconLabel.GestureRecognizers>
 
@@ -55,7 +55,7 @@
                                    Margin="10, 0">
 
                     <iconize:IconLabel.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding AddCommand}" 
+                        <TapGestureRecognizer Tapped="AddTap"
                                               NumberOfTapsRequired="1" />
                     </iconize:IconLabel.GestureRecognizers>
 

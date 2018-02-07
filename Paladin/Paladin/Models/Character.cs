@@ -18,7 +18,7 @@ namespace Paladin.Models
         public int HitDices { get; set; }
         public Classes Class { get; set; }
         public int Subclass { get; set; }
-
+        public int Gold { get; set; }
     }
 
     public class Feat : INotifyPropertyChanged

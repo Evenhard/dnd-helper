@@ -7,12 +7,12 @@
              x:Name="BrowseCharacterPage">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Name="MenuItem1"
+        <!--<ToolbarItem Name="MenuItem1"
                      Clicked="Toolbar1Clicked"
                      Order="Primary" 
                      Icon="Card.png" 
                      Text="Персонаж" 
-                     Priority="0" />
+                     Priority="0" />-->
 
         <ToolbarItem Name="MenuItem2"
                      Clicked="Toolbar2Clicked"

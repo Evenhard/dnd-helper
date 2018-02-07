@@ -14,20 +14,26 @@
                      Spacing="10">
             
             <Button Margin="0, 10, 0, 0" 
-                    Text="Наполнить базу" 
-                    Command="{Binding FillBaseCommand}" 
+                    Text="Удалить заклы" 
+                    Command="{Binding DropBaseCommand}" 
                     BackgroundColor="{StaticResource Primary}" 
                     TextColor="White" />
             
             <Button Margin="0, 10, 0, 0" 
-                    Text="Дропнуть базу" 
-                    Command="{Binding DropBaseCommand}" 
+                    Text="Создать заклы" 
+                    Command="{Binding FillBaseCommand}" 
                     BackgroundColor="{StaticResource Primary}" 
-                    TextColor="White" />
+                    TextColor="White" />            
 
             <Button Margin="0, 10, 0, 0" 
                     Text="Создать клерика" 
                     Command="{Binding CreateClericCommand}" 
+                    BackgroundColor="{StaticResource Primary}" 
+                    TextColor="White" />
+
+            <Button Margin="0, 10, 0, 0" 
+                    Text="Создать инвентарь" 
+                    Command="{Binding CreateInventoryCommand}" 
                     BackgroundColor="{StaticResource Primary}" 
                     TextColor="White" />
 

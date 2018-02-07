@@ -12,12 +12,13 @@ namespace Paladin.Services
         {
             var character = new Character()
             {
-                Name = "Вася",
+                Name = "Гунтер Громобород",
                 Level = 7,
-                HP = 99,
-                HitDices = 6,
+                HP = 76,
+                HitDices = 7,
                 Class = Classes.Cleric,
-                Subclass = (int)Cleric.Temperst
+                Subclass = (int)Cleric.Temperst,
+                Gold = 1389
                 //Slots
             };
 

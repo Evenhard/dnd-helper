@@ -49,44 +49,47 @@ namespace Paladin.AlertPopup
             }
         }
 
-        public ICommand RemoveCommand { get; }
-        public ICommand AddCommand { get; }
-
         public TextInputView (string titleText)
 		{
 			InitializeComponent ();
 
             // update the Element's textual values
             TitleLabel.Text = titleText;
-            InputEntry.Placeholder = "";
+            InputEntry.Placeholder = "0";
             CloseButton.Text = "Ок";
-            ValidationLabel.Text = "Поле ввода не должно быть пустым!";
+            ValidationLabel.Text = "Поле ввода не должно быть пустым или иметь отрицательное значение!";
 
             // handling events to expose to public
             CloseButton.Clicked += CloseButton_Clicked;
             InputEntry.TextChanged += InputEntry_TextChanged;
+        }
 
-            RemoveCommand = new Command(() =>
+        public void RemoveTap(object sender, EventArgs e)
+        {
+            try
             {
-                try
-                {
-                    var number = Int32.Parse(InputEntry.Text);
-                    number = number > 0 ? --number : number;
-                    InputEntry.Text = number.ToString();
-                }
-                catch { }
-            });
+                if (string.IsNullOrEmpty(InputEntry.Text))
+                    InputEntry.Text = "0";
 
-            AddCommand = new Command(() => 
+                var number = Int32.Parse(InputEntry.Text);
+                number = number > 0 ? --number : number;
+                InputEntry.Text = number.ToString();
+            }
+            catch { }
+        }
+
+        public void AddTap(object sender, EventArgs e)
+        {
+            try
             {
-                try
-                {
-                    var number = Int32.Parse(InputEntry.Text);
-                    ++number;
-                    InputEntry.Text = number.ToString();
-                }
-                catch { }
-            });
+                if (string.IsNullOrEmpty(InputEntry.Text))
+                    InputEntry.Text = "0";
+
+                var number = Int32.Parse(InputEntry.Text);
+                ++number;
+                InputEntry.Text = number.ToString();
+            }
+            catch { }
         }
 
         private void CloseButton_Clicked(object sender, EventArgs e)

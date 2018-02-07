@@ -146,7 +146,7 @@ namespace Paladin.ViewModels
             inputView.CloseButtonEventHandler +=
                 (sender, obj) =>
                 {
-                    if (((TextInputView)sender).TextInputResult != 0)
+                    if (((TextInputView)sender).TextInputResult >= 0)
                     {
                         ((TextInputView)sender).IsValidationLabelVisible = false;
                         popup.PageClosedTaskCompletionSource.SetResult(((TextInputView)sender).TextInputResult);

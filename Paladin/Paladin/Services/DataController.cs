@@ -30,6 +30,7 @@ namespace Paladin.Services
 
             database.CreateTableAsync<SpellItem>(CreateFlags.ImplicitPK);
             database.CreateTableAsync<Character>(CreateFlags.ImplicitPK);
+            database.CreateTableAsync<Items>(CreateFlags.ImplicitPK);
         }
 
         public Task<List<SpellItem>> GetSpellsList()
@@ -81,6 +82,23 @@ namespace Paladin.Services
             return database.Table<Character>().Where(i => i.Id == id).FirstOrDefaultAsync();
         }
 
+        public async Task FillItems(List<Items> items)
+        {
+            await database.CreateTableAsync<Items>(CreateFlags.ImplicitPK);
+
+            foreach (var item in items)
+                await database.InsertAsync(item);
+        }
+
+        public Task<List<Items>> GetInventoryesList()
+        {
+            return database.Table<Items>().ToListAsync();
+        }
+
+        public Task GoldUpdate(Character hero)
+        {
+            return database.UpdateAsync(hero);
+        }
 
         //public Task SaveSpellAsync(SpellItem item)
         //{
