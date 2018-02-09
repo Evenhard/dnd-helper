@@ -62,8 +62,9 @@ namespace Paladin.Services
         {
             await database.CreateTableAsync<SpellItem>(CreateFlags.ImplicitPK);
 
-            foreach (var item in list)
-                await database.InsertAsync(item);
+            await database.InsertAllAsync(list);
+            //foreach (var item in list)
+            //    await database.InsertAsync(item);
         }
 
         public async Task FillCharacter (Character hero)

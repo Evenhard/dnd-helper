@@ -24,6 +24,7 @@ namespace Paladin.Models
     public class Feat : INotifyPropertyChanged
     {
         public string Title { get; set; }
+        public string Text { get; set; }
         public bool TypeTop { get; set; } = false;
         public bool DescriptionVisible { get; set; } = true;
         public string Description

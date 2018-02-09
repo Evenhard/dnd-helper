@@ -16,7 +16,7 @@
     <ContentPage.Content>
         <StackLayout BackgroundColor="#F3F0E9">
 
-            <Label x:Name="PreparedLabel" 
+            <!--<Label x:Name="PreparedLabel" 
                    Text="Подготовлено: 7/7"
                    FontSize="Medium"
                    HeightRequest="35"
@@ -24,7 +24,7 @@
                    BackgroundColor="White"
                    VerticalTextAlignment="Center"
                    HorizontalOptions="FillAndExpand"
-                   HorizontalTextAlignment="Center"/>
+                   HorizontalTextAlignment="Center"/>-->
 
             <ListView x:Name="ItemsListView" 
                       ItemsSource="{Binding Items}"
