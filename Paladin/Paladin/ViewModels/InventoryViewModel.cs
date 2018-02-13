@@ -53,6 +53,16 @@ namespace Paladin.ViewModels
                 character.Gold -= value;
                 await App.Database.GoldUpdate(character);
             });
+
+            MessagingCenter.Subscribe<ItemDetailPage>(this, "DeleteItem", async obj =>
+            {
+                await ExecuteLoadItemsCommand();
+            });
+
+            MessagingCenter.Subscribe<ItemAddPage>(this, "AddItem", async obj =>
+            {
+                await ExecuteLoadItemsCommand();
+            });
         }
 
         private async Task<int> ExecuteInputPopup(string Title)

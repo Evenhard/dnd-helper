@@ -101,6 +101,17 @@ namespace Paladin.Services
             return database.UpdateAsync(hero);
         }
 
+        public async Task AddItem(Items item)
+        {
+            await database.CreateTableAsync<Items>(CreateFlags.ImplicitPK);
+            await database.InsertAsync(item);
+        }
+
+        public Task DeleteItem(Items item)
+        {
+            return database.DeleteAsync(item);
+        }
+
         //public Task SaveSpellAsync(SpellItem item)
         //{
         //    if (item.Id != 0)

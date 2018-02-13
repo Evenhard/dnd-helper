@@ -12,7 +12,7 @@ using Paladin.Models;
 
 namespace Paladin.ViewModels
 {
-    public class ItemsViewModel : BaseViewModel
+    public class SpellsViewModel : BaseViewModel
     {
         public Command LoadItemsCommand { get; set; }
 
@@ -36,11 +36,12 @@ namespace Paladin.ViewModels
                     spell.Prepared = !spell.Prepared;
 
                     await App.Database.PrepareSpell(spell);
+                    MessagingCenter.Send(this, "PrepareSpell");
                 });
             }
         }
 
-        public ItemsViewModel()
+        public SpellsViewModel()
         {
             Title = "Все заклинания";
             Items = new ObservableCollection<SpellItem>();

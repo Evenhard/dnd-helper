@@ -13,18 +13,46 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Name="MenuItem"
+                     Clicked="ToolbarClicked"
+                     Order="Primary" 
+                     Icon="SpellBook.png" 
+                     Text="Все заклинания" 
+                     Priority="0" />
+    </ContentPage.ToolbarItems>
+
     <ContentPage.Content>
         <StackLayout BackgroundColor="#F3F0E9">
 
-            <!--<Label x:Name="PreparedLabel" 
-                   Text="Подготовлено: 7/7"
-                   FontSize="Medium"
-                   HeightRequest="35"
-                   Margin="5, 5, 5, -5" 
-                   BackgroundColor="White"
-                   VerticalTextAlignment="Center"
-                   HorizontalOptions="FillAndExpand"
-                   HorizontalTextAlignment="Center"/>-->
+            <StackLayout Orientation="Horizontal" 
+                         HorizontalOptions="FillAndExpand" 
+                         HeightRequest="35"
+                         BackgroundColor="White"
+                         Margin="0, 0, 0, -5">
+                
+                <Label Text="Подготовлено:"
+                       FontSize="Medium"
+                       VerticalTextAlignment="Center"
+                       HorizontalOptions="StartAndExpand"
+                       HorizontalTextAlignment="Start"
+                       Margin="10, 5, 0, 0"/>
+
+                <Label Text="{Binding PreparedStr}"
+                       FontSize="Medium"
+                       VerticalTextAlignment="Center"
+                       HorizontalOptions="End"
+                       HorizontalTextAlignment="End"
+                       Margin="0, 5, 10, 0"/>
+
+            </StackLayout>
+            
+            
+                      <!--
+                      RefreshCommand="{Binding LoadItemsCommand}"
+                      IsPullToRefreshEnabled="true"
+                      IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                      -->
 
             <ListView x:Name="ItemsListView" 
                       ItemsSource="{Binding Items}"
@@ -32,17 +60,14 @@
                       BackgroundColor="#F3F0E9"
                       SeparatorVisibility="None"
                       SeparatorColor="Transparent"
-                      RefreshCommand="{Binding LoadItemsCommand}"
-                      IsPullToRefreshEnabled="true"
-                      IsRefreshing="{Binding IsBusy, Mode=OneWay}"
                       CachingStrategy="RecycleElement"
                       RowHeight="80" 
                       HasUnevenRows="False"
                       ItemSelected="OnItemSelected">
 
-                <ListView.Header>
+                <!--<ListView.Header>
                     <ContentView HeightRequest="2.5" BackgroundColor="#F3F0E9" />
-                </ListView.Header>
+                </ListView.Header>-->
 
                 <ListView.Footer>
                     <ContentView HeightRequest="2.5" BackgroundColor="#F3F0E9" />

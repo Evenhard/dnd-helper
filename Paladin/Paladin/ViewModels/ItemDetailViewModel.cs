@@ -1,13 +1,14 @@
-﻿using System;
-using Paladin.Models;
-using Paladin.Services;
+﻿using Paladin.Models;
+using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace Paladin.ViewModels
 {
     public class ItemDetailViewModel : BaseViewModel
     {
-        public SpellItem Item { get; set; }
-        public ItemDetailViewModel(SpellItem item = null)
+        public Items Item { get; set; }
+        public ItemDetailViewModel(Items item = null)
         {
             Title = item?.Title;
             Item = item;

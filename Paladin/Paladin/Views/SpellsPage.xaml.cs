@@ -15,11 +15,11 @@ using Paladin.Models;
 namespace Paladin.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class ItemsPage : ContentPage
+	public partial class SpellsPage : ContentPage
 	{
-        ItemsViewModel viewModel;        
+        SpellsViewModel viewModel;        
 
-        public ItemsPage()
+        public SpellsPage()
         {
             InitializeComponent();
 
@@ -27,7 +27,7 @@ namespace Paladin.Views
                 viewModel.FilterItems(Search.Text);
             };
 
-            BindingContext = viewModel = new ItemsViewModel();
+            BindingContext = viewModel = new SpellsViewModel();
         }
 
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
@@ -37,14 +37,9 @@ namespace Paladin.Views
 
             if (item == null) return;
 
-            await Navigation.PushAsync(new ItemDetailPage(new ItemDetailViewModel(item)));
+            await Navigation.PushAsync(new SpellDetailPage(new SpellDetailViewModel(item)));
         }
-
-        public void ToolbarClicked(object sender, EventArgs args)
-        {
-            Search.IsVisible = !Search.IsVisible;
-        }
-
+        
         protected override void OnAppearing()
         {
             base.OnAppearing();

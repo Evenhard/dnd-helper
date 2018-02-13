@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Paladin.Views.SpellDetailPage"
+             Title="{Binding Title}">
+
+    <ScrollView>
+        <StackLayout Spacing="10" Padding="15">
+            <Label Text="{Binding Item.Title}" 
+                   FontSize="Large" 
+                   FontAttributes="Bold"
+                   HorizontalTextAlignment="Center" 
+                   HorizontalOptions="CenterAndExpand"/>
+
+            <Label Text="{Binding Item.School}" 
+                   FontSize="Medium"
+                   FontAttributes="Italic"/>
+
+            <StackLayout Margin="0" Orientation="Horizontal">
+                <Label Text="Уровень:" FontSize="Medium" FontAttributes="Bold" />
+                <Label Text="{Binding Item.Level}" FontSize="Medium"/>
+            </StackLayout>            
+            <ContentView HeightRequest="1" BackgroundColor="#F3F0E9" />
+
+            <StackLayout Margin="0" Orientation="Horizontal">
+                <Label Text="Время накладывания:" FontSize="Medium" FontAttributes="Bold" />
+                <Label Text="{Binding Item.Time}" FontSize="Medium"/>
+            </StackLayout>                
+            <ContentView HeightRequest="1" BackgroundColor="#F3F0E9" />
+
+            <StackLayout Margin="0" Orientation="Horizontal">
+                <Label Text="Дистанция:" FontSize="Medium" FontAttributes="Bold" />
+                <Label Text="{Binding Item.Distance}" FontSize="Medium"/>
+            </StackLayout>            
+            <ContentView HeightRequest="1" BackgroundColor="#F3F0E9" />
+
+            <StackLayout Margin="0" Orientation="Horizontal">
+                <Label Text="Компоненты:" FontSize="Medium" FontAttributes="Bold" />
+                <Label Text="{Binding Item.Components}" FontSize="Medium"/>
+            </StackLayout>            
+            <ContentView HeightRequest="1" BackgroundColor="#F3F0E9" />
+
+            <StackLayout Margin="0" Orientation="Horizontal">
+                <Label Text="Длительность:" FontSize="Medium" FontAttributes="Bold" />
+                <Label Text="{Binding Item.Duration}" FontSize="Medium"/>
+            </StackLayout>            
+            <ContentView HeightRequest="1" BackgroundColor="#F3F0E9" />
+
+            <Label Text="Описание:" FontSize="Medium" FontAttributes="Bold" />
+            <Label Text="{Binding Item.Description}" FontSize="Medium"/>
+        </StackLayout>
+    </ScrollView>    
+</ContentPage>

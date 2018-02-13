@@ -20,12 +20,6 @@
             </x:Arguments>
         </NavigationPage>
 
-        <NavigationPage Icon="SpellBook.png">
-            <x:Arguments>
-                <views:ItemsPage />
-            </x:Arguments>
-        </NavigationPage>
-
         <NavigationPage Icon="Chest.png">
             <x:Arguments>
                 <views:InventoryPage />

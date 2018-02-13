@@ -17,7 +17,7 @@
         <ToolbarItem Name="MenuItem2"
                      Clicked="Toolbar2Clicked"
                      Order="Primary" 
-                     Icon="Campfire.png" 
+                     Icon="Refresh.png" 
                      Text="Отдых" 
                      Priority="1" />
     </ContentPage.ToolbarItems>
@@ -282,10 +282,13 @@
 
                                 <iconize:IconLabel Text="ion-android-remove-circle" 
                                                    FontSize="30"
+                                                   WidthRequest="40"
                                                    HorizontalOptions="End"
-                                                   VerticalOptions="CenterAndExpand"
+                                                   HorizontalTextAlignment="Center"
+                                                   VerticalTextAlignment="Center"
+                                                   VerticalOptions="FillAndExpand"
                                                    IsVisible="{Binding DescriptionVisible}"
-                                                   Margin="10, 0">
+                                                   Margin="0">
 
                                     <iconize:IconLabel.GestureRecognizers>
                                         <TapGestureRecognizer Command="{Binding UseFeatCommand}" 

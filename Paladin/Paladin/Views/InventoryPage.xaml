@@ -7,9 +7,9 @@
              x:Name="InventoryCharacterPage">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Name="MenuItem1"
+        <ToolbarItem Clicked="ToolbarClicked"
                      Order="Primary" 
-                     Icon="Bottle.png" 
+                     Icon="Add.png" 
                      Text="Добавить предмет" 
                      Priority="1" />
     </ContentPage.ToolbarItems>

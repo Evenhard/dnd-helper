@@ -16,18 +16,26 @@ namespace Paladin.ViewModels
     {
         public ObservableCollection<SpellItem> Items { get; set; }
         public Command LoadItemsCommand { get; set; }
+        
+        private int Prepared { get; set; }
+        private int PreparedMax { get; set; }
+
+        private string preparedStr { get; set; }
+        public string PreparedStr
+        {
+            get { return preparedStr; }
+            set { preparedStr = value; base.OnPropertyChanged(); }
+        }
 
         public PreparedViewModel()
         {
-            Title = "Подготовленные заклинания";
+            Title = "Заклинания";
             Items = new ObservableCollection<SpellItem>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 
-            //MessagingCenter.Subscribe<ItemDetailPage, SpellItem>(this, "Подготовить", (obj, item) =>
-            //{
-            //    var _item = item as SpellItem;
-            //    Items.Add(_item);
-            //});
+            MessagingCenter.Subscribe<SpellsViewModel>(this, "PrepareSpell", (sender) => {
+                LoadItemsCommand.Execute(null);
+            });
         }
 
         async Task ExecuteLoadItemsCommand()
@@ -47,6 +55,9 @@ namespace Paladin.ViewModels
                 {
                     Items.Add(item);
                 }
+
+                if (Items.Count > 0)
+                    CountPreparedSpells(Items);
             }
             catch (Exception ex)
             {
@@ -56,6 +67,20 @@ namespace Paladin.ViewModels
             {
                 IsBusy = false;
             }
+        }
+
+        public async void CountPreparedSpells(ObservableCollection<SpellItem> Items)
+        {
+            var chars = await App.Database.GetCharactersList();
+            var character = chars[0];
+
+            Prepared = 0;
+            PreparedMax = character.Level + character.StatWis;
+
+            foreach (var item in Items)
+                if (item.Prepared && !item.ClassSpell && item.Level > 0) Prepared++;
+
+            PreparedStr = Prepared + "/" + PreparedMax;
         }
     }
 }

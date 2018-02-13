@@ -1,4 +1,5 @@
-﻿using Paladin.ViewModels;
+﻿using Paladin.Models;
+using Paladin.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,13 +25,18 @@ namespace Paladin.Views
 
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
-            //var item = args.SelectedItem as SpellItem;
-            //if (item == null)
-            //    return;
+            var item = args.SelectedItem as Items;
+            if (item == null)
+                return;
 
-            //await Navigation.PushAsync(new ItemDetailPage(new ItemDetailViewModel(item)));
+            await Navigation.PushAsync(new ItemDetailPage(new ItemDetailViewModel(item)));
 
             ItemsListView.SelectedItem = null;
+        }
+
+        public async void ToolbarClicked(object sender, EventArgs args)
+        {
+            await Navigation.PushAsync(new ItemAddPage());
         }
 
         protected override void OnAppearing()

@@ -19,6 +19,13 @@ namespace Paladin.Models
         public Classes Class { get; set; }
         public int Subclass { get; set; }
         public int Gold { get; set; }
+
+        public int StatStr { get; set; }
+        public int StatDex { get; set; }
+        public int StatCon { get; set; }
+        public int StatInt { get; set; }
+        public int StatWis { get; set; }
+        public int StatCha { get; set; }
     }
 
     public class Feat : INotifyPropertyChanged

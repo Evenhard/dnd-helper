@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Paladin.Views.ItemAddPage"
+             Title="Новый предмет">
+    <ContentPage.Content>
+        <StackLayout Spacing="10" Padding="15">
+            <Label Text="Название" FontSize="Medium" />
+            <Entry FontSize="Medium" x:Name="NameEntry" Keyboard="Text"/>
+
+            <Label Text="Цена" FontSize="Medium" />
+            <Entry FontSize="Medium" x:Name="PriceEntry" Keyboard="Numeric" />
+
+            <Label Text="Вес" FontSize="Medium" />
+            <Entry FontSize="Medium" x:Name="WeightEntry" Keyboard="Numeric" />
+
+            <Label Text="Описание" FontSize="Medium" />
+            <Editor FontSize="Medium" Margin="0" x:Name="DescriptionEditor" Keyboard="Text"/>
+
+            <Button Margin="30, 0, 30, 0" 
+                    Text="Сохранить"
+                    x:Name="SaveButton"
+                    Clicked="OnClick" 
+                    BackgroundColor="{StaticResource Primary}" 
+                    TextColor="White" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
