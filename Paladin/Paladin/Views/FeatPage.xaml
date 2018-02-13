@@ -1,0 +1,305 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Paladin.Views.FeatPage"
+             Title="{Binding Title}"
+             x:Name="BrowseFeatsPage">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Name="MenuItem2"
+                     Clicked="Toolbar2Clicked"
+                     Order="Primary" 
+                     Icon="Refresh.png" 
+                     Text="Отдых" 
+                     Priority="1" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="#F3F0E9" Spacing="0">
+
+            <Grid ColumnSpacing="0" 
+                  RowSpacing="0"
+                  Margin="0"
+                  VerticalOptions="Start"
+                  BackgroundColor="White"
+                  HorizontalOptions="FillAndExpand" 
+                  x:Name="HpGrid">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="5*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+
+                <StackLayout Orientation="Horizontal" 
+                             HorizontalOptions="FillAndExpand"
+                             VerticalOptions="CenterAndExpand"
+                             Margin="10"
+                             Grid.Column="0" 
+                             Grid.Row="0" >
+
+                    <Label Text="Временные ХП:" 
+                           FontAttributes="Bold"
+                           FontSize="16" 
+                           HorizontalOptions="StartAndExpand"
+                           Margin="0, 0, 0, 0"/>
+
+                    <Label Text="{Binding temporaryHP}" 
+                           FontSize="16" 
+                           HorizontalOptions="End"
+                           Margin="0, 0, 0, 0"/>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal"
+                             HorizontalOptions="FillAndExpand"
+                             VerticalOptions="CenterAndExpand"
+                             Margin="10"
+                             Grid.Column="1" 
+                             Grid.Row="0" >
+
+                    <Label Text="Текущие ХП:" 
+                           FontAttributes="Bold"
+                           FontSize="16" 
+                           HorizontalOptions="StartAndExpand"
+                           Margin="0, 0, 0, 0"/>
+
+                    <Label Text="{Binding currentHP}" 
+                           x:Name="CurrentHPLabel"
+                           FontSize="16" 
+                           HorizontalOptions="End"
+                           Margin="0, 0, 0, 0"/>
+
+                    <Label Text="/" 
+                           FontSize="16" 
+                           HorizontalOptions="End"
+                           Margin="-6, 0"/>
+
+                    <Label Text="{Binding maxHP}" 
+                           x:Name="MaxHPLabel"
+                           FontSize="16" 
+                           HorizontalOptions="End"
+                           Margin="0, 0, 0, 0"/>
+                </StackLayout>
+
+            </Grid>
+
+            <Grid ColumnSpacing="0" 
+                  RowSpacing="0"
+                  Margin="0"
+                  VerticalOptions="Start"
+                  BackgroundColor="White"
+                  HorizontalOptions="FillAndExpand" 
+                  x:Name="DamageGrid">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="3*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Frame HorizontalOptions="FillAndExpand"
+                       BackgroundColor="#B61C1A"
+                       CornerRadius="5"
+                       HeightRequest="10"
+                       Margin="5, 5, 1.5, 5"
+                       Grid.Column="0" 
+                       Grid.Row="0" >
+
+                    <StackLayout Orientation="Horizontal" 
+                                 HorizontalOptions="FillAndExpand"
+                                 VerticalOptions="FillAndExpand"
+                                 Margin="-7, -14">
+
+                        <iconize:IconLabel Text="ion-android-hand"
+                                           TextColor="White"
+                                           FontSize="24" 
+                                           HorizontalOptions="Start"
+                                           VerticalOptions="CenterAndExpand"
+                                           Margin="0"/>
+
+                        <Label Text="Щит"
+                               TextColor="White"
+                               FontSize="14" 
+                               HorizontalOptions="CenterAndExpand"
+                               VerticalOptions="CenterAndExpand"
+                               Margin="0"/>
+
+                    </StackLayout>
+
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding ShieldCommand}" />
+                    </Frame.GestureRecognizers>
+                </Frame>
+
+                <Frame HorizontalOptions="FillAndExpand"
+                       BackgroundColor="#B61C1A"
+                       CornerRadius="5"
+                       HeightRequest="10"
+                       Margin="1.5, 5, 1.5, 5"
+                       Grid.Column="1" 
+                       Grid.Row="0" >
+
+                    <StackLayout Orientation="Horizontal" 
+                                 HorizontalOptions="FillAndExpand"
+                                 VerticalOptions="FillAndExpand"
+                                 Margin="-7, -14">
+
+                        <iconize:IconLabel Text="ion-heart"
+                                           TextColor="White"
+                                           FontSize="24" 
+                                           HorizontalOptions="Start"
+                                           VerticalOptions="CenterAndExpand"
+                                           Margin="0"/>
+
+                        <Label Text="Лечение"
+                               TextColor="White"
+                               FontSize="14" 
+                               HorizontalOptions="CenterAndExpand"
+                               VerticalOptions="CenterAndExpand"
+                               Margin="0"/>
+
+                    </StackLayout>
+
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding HealCommand}" />
+                    </Frame.GestureRecognizers>
+                </Frame>
+
+                <Frame HorizontalOptions="FillAndExpand"
+                       BackgroundColor="#B61C1A"
+                       CornerRadius="5"
+                       HeightRequest="10"
+                       Margin="1.5, 5, 5, 5"
+                       Grid.Column="2" 
+                       Grid.Row="0" >
+
+                    <StackLayout Orientation="Horizontal" 
+                                 HorizontalOptions="FillAndExpand"
+                                 VerticalOptions="FillAndExpand"
+                                 Margin="-7, -14">
+
+                        <iconize:IconLabel Text="ion-heart-broken"
+                                           TextColor="White"
+                                           FontSize="24" 
+                                           HorizontalOptions="Start"
+                                           VerticalOptions="CenterAndExpand"
+                                           Margin="0"/>
+
+                        <Label Text="Урон"
+                               TextColor="White"
+                               FontSize="14" 
+                               HorizontalOptions="CenterAndExpand"
+                               VerticalOptions="CenterAndExpand"
+                               Margin="0"/>
+
+                    </StackLayout>
+
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding DamageCommand}" />
+                    </Frame.GestureRecognizers>
+                </Frame>
+            </Grid>
+
+            <ListView ItemsSource="{Binding ListOfFeats}"
+                      x:Name="ItemsListView"
+                      VerticalOptions="FillAndExpand"
+                      Margin="0"
+                      CachingStrategy="RecycleElement"
+                      BackgroundColor="#F3F0E9"
+                      SeparatorVisibility="None"
+                      SeparatorColor="Transparent"
+                      IsGroupingEnabled="true"
+                      ItemSelected="OnItemSelected">
+
+                <ListView.GroupHeaderTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+
+                            <StackLayout HeightRequest="35"
+                                         Margin="0, 0, 0, 0"
+                                         BackgroundColor="White"
+                                         Orientation="Horizontal">
+
+                                <Label Text="{Binding Heading}" 
+                                       FontSize="20"
+                                       Margin="10, 0, 0, 5"
+                                       FontAttributes="Bold"
+                                       VerticalOptions="EndAndExpand"
+                                       HorizontalOptions="Start"/>
+
+                                <Label Text="{Binding Description}" 
+                                       FontSize="20"
+                                       Margin="0, 0, 50, 5"
+                                       VerticalOptions="EndAndExpand"
+                                       HorizontalOptions="EndAndExpand"/>
+                            </StackLayout>
+
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.GroupHeaderTemplate>
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+
+                            <StackLayout Orientation="Horizontal" 
+                                         x:Name="ItemViewCell"
+                                         BackgroundColor="White"
+                                         HeightRequest="25"
+                                         Margin="0.5, 0.5">
+
+                                <Label Text="{Binding Title}" 
+                                       FontSize="18"
+                                       WidthRequest="250"
+                                       Margin="10, 0, 5, 0"
+                                       HorizontalOptions="StartAndExpand"
+                                       VerticalOptions="CenterAndExpand"/>
+
+                                <!--  ion-android-add-circle  -->
+                                <!--  ion-android-remove-circle  -->
+                                <Label Text="{Binding Description}"
+                                       FontSize="20"
+                                       Margin="0"
+                                       HorizontalOptions="End"
+                                       HorizontalTextAlignment="Center"
+                                       VerticalOptions="CenterAndExpand"/>
+
+                                <iconize:IconLabel Text="ion-android-remove-circle" 
+                                                   FontSize="30"
+                                                   WidthRequest="40"
+                                                   HorizontalOptions="End"
+                                                   HorizontalTextAlignment="Center"
+                                                   VerticalTextAlignment="Center"
+                                                   VerticalOptions="FillAndExpand"
+                                                   IsVisible="{Binding DescriptionVisible}"
+                                                   Margin="0">
+
+                                    <iconize:IconLabel.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding UseFeatCommand}" 
+                                                              CommandParameter="{Binding Source={x:Reference ItemViewCell}, Path=BindingContext}" 
+                                                              BindingContext="{Binding Source={x:Reference ItemsListView}, Path=BindingContext}"
+                                                              NumberOfTapsRequired="1" />
+                                    </iconize:IconLabel.GestureRecognizers>
+
+                                </iconize:IconLabel>
+                            </StackLayout>
+
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+
+                <ListView.Footer>
+                    <ContentView HeightRequest="10" BackgroundColor="White" />
+                </ListView.Footer>
+
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
