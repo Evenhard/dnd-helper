@@ -11,6 +11,7 @@
         <ResourceDictionary>
             <convert:GetStarFromIntConverter x:Key="getStarFromIntConverter"/>
             <convert:GetPreparedCheckboxConverter x:Key="getPreparedCheckboxConverter"/>
+            <convert:NegateBooleanConverter x:Key="negateBooleanConverter"/>
         </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -157,6 +158,7 @@
                                                        HorizontalOptions="FillAndExpand"
                                                        VerticalOptions="FillAndExpand"
                                                        Margin="0"
+                                                       IsVisible="{Binding ClassSpell, Converter={StaticResource negateBooleanConverter}}"
                                                        Grid.Column="2"
                                                        Grid.RowSpan="2">
 
@@ -168,6 +170,18 @@
                                         </iconize:IconLabel.GestureRecognizers>
 
                                     </iconize:IconLabel>
+
+                                    <iconize:IconLabel Text="ion-android-checkbox" 
+                                                       Style="{DynamicResource ListItemDetailTextStyle}"
+                                                       FontSize="40"
+                                                       VerticalTextAlignment="Center"
+                                                       HorizontalTextAlignment="Center"
+                                                       HorizontalOptions="FillAndExpand"
+                                                       VerticalOptions="FillAndExpand"
+                                                       Margin="0"
+                                                       IsVisible="{Binding ClassSpell}"
+                                                       Grid.Column="2"
+                                                       Grid.RowSpan="2"/>
 
                                 </Grid>
                             </StackLayout>

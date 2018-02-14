@@ -18,7 +18,19 @@
                     Command="{Binding DropBaseCommand}" 
                     BackgroundColor="{StaticResource Primary}" 
                     TextColor="White" />
-            
+
+            <Button Margin="0, 10, 0, 0" 
+                    Text="Создать заклы Паладина" 
+                    Command="{Binding FillPaladinCommand}" 
+                    BackgroundColor="{StaticResource Primary}" 
+                    TextColor="White" />
+
+            <Button Margin="0, 10, 0, 0" 
+                    Text="Создать заклы Доп. Паладина" 
+                    Command="{Binding FillXGTECommand}" 
+                    BackgroundColor="{StaticResource Primary}" 
+                    TextColor="White" />
+
             <Button Margin="0, 10, 0, 0" 
                     Text="Создать заклы Жреца" 
                     Command="{Binding FillBaseCommand}" 

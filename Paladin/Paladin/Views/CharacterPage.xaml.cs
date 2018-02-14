@@ -23,23 +23,7 @@ namespace Paladin.Views
             BindingContext = viewModel = new CharacterViewModel();
         }
 
-        async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
-        {
-            var item = args.SelectedItem as Feat;
-            ItemsListView.SelectedItem = null;
-
-            if (item == null) return;
-
-            if(!string.IsNullOrEmpty(item.Text))
-                await Navigation.PushAsync(new FeatDetailPage(new FeatDetailViewModel(item)));
-        }
-
-        public void Toolbar1Clicked(object sender, EventArgs args)
-        {
-            
-        }
-
-        public void Toolbar2Clicked(object sender, EventArgs args)
+        public void ToolbarClicked(object sender, EventArgs args)
         {
             viewModel.LoadItemsCommand.Execute(null);
         }
@@ -48,7 +32,7 @@ namespace Paladin.Views
         {
             base.OnAppearing();
 
-            if (viewModel.ListOfFeats.Count == 0)
+            if (viewModel.maxHP == 0)
                 viewModel.LoadItemsCommand.Execute(null);
         }
     }

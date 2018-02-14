@@ -11,14 +11,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Naxam.BottomTabbedPage" Version="0.1.0.1">
-      <NoWarn>NU1701</NoWarn>
-    </PackageReference>
     <PackageReference Include="Rg.Plugins.Popup" Version="1.0.4" />
     <PackageReference Include="sqlite-net-pcl" Version="1.4.118" />
-    <PackageReference Include="ThriveGmbH.BottomNavigationBar.XF" Version="1.0.2">
-      <NoWarn>NU1701</NoWarn>
-    </PackageReference>
     <PackageReference Include="Xam.FormsPlugin.Iconize" Version="1.0.10">
       <NoWarn>NU1701</NoWarn>
     </PackageReference>

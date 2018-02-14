@@ -119,9 +119,6 @@
     <Reference Include="Xamarin.iOS" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Naxam.BottomTabbedPage">
-      <Version>0.1.0.1</Version>
-    </PackageReference>
     <PackageReference Include="Rg.Plugins.Popup">
       <Version>1.0.4</Version>
     </PackageReference>

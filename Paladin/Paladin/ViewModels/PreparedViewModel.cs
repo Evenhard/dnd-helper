@@ -53,6 +53,7 @@ namespace Paladin.ViewModels
 
                 foreach (var item in items)
                 {
+                    if (item.Level <= 2)
                     Items.Add(item);
                 }
 

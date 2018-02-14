@@ -12,9 +12,15 @@
             <x:Arguments>
                 <views:CharacterPage />
             </x:Arguments>
-        </NavigationPage>        
+        </NavigationPage>
 
         <NavigationPage Icon="FlameHand.png">
+            <x:Arguments>
+                <views:FeatPage />
+            </x:Arguments>
+        </NavigationPage>
+
+        <NavigationPage Icon="Book.png">
             <x:Arguments>
                 <views:PreparedPage />
             </x:Arguments>
