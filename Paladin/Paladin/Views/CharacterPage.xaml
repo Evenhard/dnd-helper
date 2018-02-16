@@ -6,14 +6,14 @@
              Title="{Binding Title}"
              x:Name="BrowseCharacterPage">
 
-    <ContentPage.ToolbarItems>
+    <!--<ContentPage.ToolbarItems>
         <ToolbarItem Name="MenuItem"
                      Clicked="ToolbarClicked"
                      Order="Primary" 
                      Icon="Refresh.png" 
                      Text="Отдых" 
                      Priority="1" />
-    </ContentPage.ToolbarItems>
+    </ContentPage.ToolbarItems>-->
 
     <ContentPage.Content>
         
@@ -61,12 +61,17 @@
                              Margin="10"
                              Grid.Column="1" 
                              Grid.Row="0" >
-                        
+
                     <Label Text="Текущие ХП:" 
                            FontAttributes="Bold"
                            FontSize="16" 
                            HorizontalOptions="StartAndExpand"
-                           Margin="0, 0, 0, 0"/>
+                           Margin="0, 0, 0, 0">
+
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="2" Command="{Binding MakeHP}" />
+                        </Label.GestureRecognizers>
+                    </Label>
 
                     <Label Text="{Binding currentHP}" 
                            x:Name="CurrentHPLabel"
@@ -215,12 +220,15 @@
                   VerticalOptions="Start"
                   BackgroundColor="White"
                   HorizontalOptions="FillAndExpand" 
-                  x:Name="xxxxxDamageGrid">
+                  x:Name="StatsGrid">
 
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="3*"/>
-                    <ColumnDefinition Width="3*"/>
-                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
 
                 <Grid.RowDefinitions>
@@ -230,28 +238,23 @@
 
                 <Frame HorizontalOptions="FillAndExpand"
                        BackgroundColor="White"
-                       OutlineColor="Black"
                        CornerRadius="5"
-                       Margin="0"
+                       Margin="5, 5, 2.5, 5"
                        Grid.Column="0" 
                        Grid.Row="0" >
 
-                    <StackLayout Orientation="Horizontal"
-                                 BackgroundColor="Green"
-                                 HorizontalOptions="FillAndExpand"
+                    <StackLayout HorizontalOptions="FillAndExpand"
                                  VerticalOptions="FillAndExpand"
                                  Margin="-10">
 
-                        <iconize:IconLabel Text="ion-heart-broken"
-                                           TextColor="White"
-                                           FontSize="24" 
-                                           HorizontalOptions="Start"
-                                           VerticalOptions="CenterAndExpand"
-                                           Margin="0"/>
-
-                        <Label Text="Урон"
-                               TextColor="White"
+                        <Label Text="Сил"
                                FontSize="14" 
+                               HorizontalOptions="CenterAndExpand"
+                               VerticalOptions="Start"
+                               Margin="0"/>
+
+                        <Label Text="{Binding StatStr}"
+                               FontSize="30" 
                                HorizontalOptions="CenterAndExpand"
                                VerticalOptions="CenterAndExpand"
                                Margin="0"/>
@@ -259,12 +262,457 @@
                     </StackLayout>
 
                     <Frame.GestureRecognizers>
-                        <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding DamageCommand}" />
+                        <TapGestureRecognizer NumberOfTapsRequired="2" Command="{Binding MakeStr}" />
+                    </Frame.GestureRecognizers>
+                </Frame>
+
+                <Frame HorizontalOptions="FillAndExpand"
+                       BackgroundColor="White"
+                       CornerRadius="5"
+                       Margin="2.5, 5"
+                       Grid.Column="1" 
+                       Grid.Row="0" >
+
+                    <StackLayout HorizontalOptions="FillAndExpand"
+                                 VerticalOptions="FillAndExpand"
+                                 Margin="-10">
+
+                        <Label Text="Лов"
+                               FontSize="14" 
+                               HorizontalOptions="CenterAndExpand"
+                               VerticalOptions="Start"
+                               Margin="0"/>
+
+                        <Label Text="{Binding StatDex}"
+                               FontSize="30" 
+                               HorizontalOptions="CenterAndExpand"
+                               VerticalOptions="CenterAndExpand"
+                               Margin="0"/>
+
+                    </StackLayout>
+
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer NumberOfTapsRequired="2" Command="{Binding MakeDex}" />
+                    </Frame.GestureRecognizers>
+                </Frame>
+
+                <Frame HorizontalOptions="FillAndExpand"
+                       BackgroundColor="White"
+                       CornerRadius="5"
+                       Margin="2.5, 5"
+                       Grid.Column="2" 
+                       Grid.Row="0" >
+
+                    <StackLayout HorizontalOptions="FillAndExpand"
+                                 VerticalOptions="FillAndExpand"
+                                 Margin="-10">
+
+                        <Label Text="Вын"
+                               FontSize="14" 
+                               HorizontalOptions="CenterAndExpand"
+                               VerticalOptions="Start"
+                               Margin="0"/>
+
+                        <Label Text="{Binding StatCon}"
+                               FontSize="30" 
+                               HorizontalOptions="CenterAndExpand"
+                               VerticalOptions="CenterAndExpand"
+                               Margin="0"/>
+
+                    </StackLayout>
+
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer NumberOfTapsRequired="2" Command="{Binding MakeCon}" />
+                    </Frame.GestureRecognizers>
+                </Frame>
+
+                <Frame HorizontalOptions="FillAndExpand"
+                       BackgroundColor="White"
+                       CornerRadius="5"
+                       Margin="2.5, 5"
+                       Grid.Column="3" 
+                       Grid.Row="0" >
+
+                    <StackLayout HorizontalOptions="FillAndExpand"
+                                 VerticalOptions="FillAndExpand"
+                                 Margin="-10">
+
+                        <Label Text="Инт"
+                               FontSize="14" 
+                               HorizontalOptions="CenterAndExpand"
+                               VerticalOptions="Start"
+                               Margin="0"/>
+
+                        <Label Text="{Binding StatInt}"
+                               FontSize="30" 
+                               HorizontalOptions="CenterAndExpand"
+                               VerticalOptions="CenterAndExpand"
+                               Margin="0"/>
+
+                    </StackLayout>
+
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer NumberOfTapsRequired="2" Command="{Binding MakeInt}" />
+                    </Frame.GestureRecognizers>
+                </Frame>
+
+                <Frame HorizontalOptions="FillAndExpand"
+                       BackgroundColor="White"
+                       CornerRadius="5"
+                       Margin="2.5, 5"
+                       Grid.Column="4" 
+                       Grid.Row="0" >
+
+                    <StackLayout HorizontalOptions="FillAndExpand"
+                                 VerticalOptions="FillAndExpand"
+                                 Margin="-10">
+
+                        <Label Text="Муд"
+                               FontSize="14" 
+                               HorizontalOptions="CenterAndExpand"
+                               VerticalOptions="Start"
+                               Margin="0"/>
+
+                        <Label Text="{Binding StatWis}"
+                               FontSize="30" 
+                               HorizontalOptions="CenterAndExpand"
+                               VerticalOptions="CenterAndExpand"
+                               Margin="0"/>
+
+                    </StackLayout>
+
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer NumberOfTapsRequired="2" Command="{Binding MakeWis}" />
+                    </Frame.GestureRecognizers>
+                </Frame>
+
+                <Frame HorizontalOptions="FillAndExpand"
+                       BackgroundColor="White"
+                       CornerRadius="5"
+                       Margin="2.5, 5, 5, 5"
+                       Grid.Column="5" 
+                       Grid.Row="0" >
+
+                    <StackLayout HorizontalOptions="FillAndExpand"
+                                 VerticalOptions="FillAndExpand"
+                                 Margin="-10">
+
+                        <Label Text="Хар"
+                               FontSize="14" 
+                               HorizontalOptions="CenterAndExpand"
+                               VerticalOptions="Start"
+                               Margin="0"/>
+
+                        <Label Text="{Binding StatCha}"
+                               FontSize="30" 
+                               HorizontalOptions="CenterAndExpand"
+                               VerticalOptions="CenterAndExpand"
+                               Margin="0"/>
+
+                    </StackLayout>
+
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer NumberOfTapsRequired="2" Command="{Binding MakeCha}" />
                     </Frame.GestureRecognizers>
                 </Frame>
 
             </Grid>
-            
+
+            <Grid ColumnSpacing="0" 
+                  RowSpacing="0"
+                  Margin="0"
+                  VerticalOptions="Start"
+                  BackgroundColor="White"
+                  HorizontalOptions="FillAndExpand" 
+                  x:Name="SkillsGrid">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Label Text="Навыки:"
+                       FontSize="20"
+                       HorizontalOptions="CenterAndExpand"
+                       VerticalOptions="Start"
+                       Grid.Column="0"
+                       Grid.Row="0"/>
+
+                <StackLayout Orientation="Horizontal" 
+                             HorizontalOptions="FillAndExpand"
+                             VerticalOptions="FillAndExpand"
+                             Margin="5, 2.5"
+                             Grid.Column="0"
+                             Grid.Row="1">
+
+                    <Label Text="Атлетика"
+                           FontSize="14" 
+                           HorizontalOptions="StartAndExpand"
+                           VerticalOptions="CenterAndExpand"
+                           Margin="0"/>
+
+                    <Label Text="{Binding SkillAtlet}"
+                           FontSize="14" 
+                           HorizontalOptions="End"
+                           VerticalOptions="CenterAndExpand"
+                           Margin="0"/>
+
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" 
+                             HorizontalOptions="FillAndExpand"
+                             VerticalOptions="FillAndExpand"
+                             Margin="5, 2.5"
+                             Grid.Column="0"
+                             Grid.Row="2">
+
+                    <Label Text="Внимательность"
+                           FontSize="14" 
+                           HorizontalOptions="StartAndExpand"
+                           VerticalOptions="CenterAndExpand"
+                           Margin="0"/>
+
+                    <Label Text="{Binding SkillVnim}"
+                           FontSize="14" 
+                           HorizontalOptions="End"
+                           VerticalOptions="CenterAndExpand"
+                           Margin="0"/>
+
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" 
+                             HorizontalOptions="FillAndExpand"
+                             VerticalOptions="FillAndExpand"
+                             Margin="5, 2.5"
+                             Grid.Column="0"
+                             Grid.Row="3">
+
+                    <Label Text="Запугивание"
+                           FontSize="14" 
+                           HorizontalOptions="StartAndExpand"
+                           VerticalOptions="CenterAndExpand"
+                           Margin="0"/>
+
+                    <Label Text="{Binding SkillZapug}"
+                           FontSize="14" 
+                           HorizontalOptions="End"
+                           VerticalOptions="CenterAndExpand"
+                           Margin="0"/>
+
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" 
+                             HorizontalOptions="FillAndExpand"
+                             VerticalOptions="FillAndExpand"
+                             Margin="5, 2.5"
+                             Grid.Column="0"
+                             Grid.Row="4">
+
+                    <Label Text="Проницательность"
+                           FontSize="14" 
+                           HorizontalOptions="StartAndExpand"
+                           VerticalOptions="CenterAndExpand"
+                           Margin="0"/>
+
+                    <Label Text="{Binding SkillPronic}"
+                           FontSize="14" 
+                           HorizontalOptions="End"
+                           VerticalOptions="CenterAndExpand"
+                           Margin="0"/>
+
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" 
+                             HorizontalOptions="FillAndExpand"
+                             VerticalOptions="FillAndExpand"
+                             Margin="5, 2.5"
+                             Grid.Column="0"
+                             Grid.Row="5">
+
+                    <Label Text="Убеждение"
+                           FontSize="14" 
+                           HorizontalOptions="StartAndExpand"
+                           VerticalOptions="CenterAndExpand"
+                           Margin="0"/>
+
+                    <Label Text="{Binding SkillUbejd}"
+                           FontSize="14" 
+                           HorizontalOptions="End"
+                           VerticalOptions="CenterAndExpand"
+                           Margin="0"/>
+
+                </StackLayout>
+
+                <ContentView VerticalOptions="FillAndExpand"
+                             HorizontalOptions="FillAndExpand"
+                             BackgroundColor="LightGray"
+                             Grid.Column="1"
+                             Grid.RowSpan="6"/>
+
+                <Label Text="Спасброски:"
+                       FontSize="20"
+                       HorizontalOptions="CenterAndExpand"
+                       VerticalOptions="Start"
+                       Grid.Column="2"
+                       Grid.Row="0"/>
+
+                <StackLayout Orientation="Horizontal" 
+                             HorizontalOptions="FillAndExpand"
+                             VerticalOptions="FillAndExpand"
+                             Margin="5, 2.5"
+                             Grid.Column="2"
+                             Grid.Row="1">
+
+                    <Label Text="Выносливость"
+                           FontSize="14" 
+                           HorizontalOptions="StartAndExpand"
+                           VerticalOptions="CenterAndExpand"
+                           Margin="0"/>
+
+                    <Label Text="{Binding SpasCon}"
+                           FontSize="14" 
+                           HorizontalOptions="End"
+                           VerticalOptions="CenterAndExpand"
+                           Margin="0"/>
+
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" 
+                             HorizontalOptions="FillAndExpand"
+                             VerticalOptions="FillAndExpand"
+                             Margin="5, 2.5"
+                             Grid.Column="2"
+                             Grid.Row="2">
+
+                    <Label Text="Мудрость"
+                           FontSize="14" 
+                           HorizontalOptions="StartAndExpand"
+                           VerticalOptions="CenterAndExpand"
+                           Margin="0"/>
+
+                    <Label Text="{Binding SpasWis}"
+                           FontSize="14" 
+                           HorizontalOptions="End"
+                           VerticalOptions="CenterAndExpand"
+                           Margin="0"/>
+
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" 
+                             HorizontalOptions="FillAndExpand"
+                             VerticalOptions="FillAndExpand"
+                             Margin="5, 2.5"
+                             Grid.Column="2"
+                             Grid.Row="3">
+
+                    <Label Text="Харизма"
+                           FontSize="14" 
+                           HorizontalOptions="StartAndExpand"
+                           VerticalOptions="CenterAndExpand"
+                           Margin="0"/>
+
+                    <Label Text="{Binding SpasCha}"
+                           FontSize="14" 
+                           HorizontalOptions="End"
+                           VerticalOptions="CenterAndExpand"
+                           Margin="0"/>
+
+                </StackLayout>
+
+            </Grid>
+
+            <Grid ColumnSpacing="0" 
+                  RowSpacing="0"
+                  Margin="0"
+                  BackgroundColor="White"
+                  VerticalOptions="FillAndExpand"
+                  HorizontalOptions="FillAndExpand"
+                  x:Name="WeaponGrid">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="2.5*"/>
+                    <ColumnDefinition Width="2.5*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Label Text="Оружие"
+                       FontSize="20" 
+                       HorizontalOptions="CenterAndExpand"
+                       VerticalOptions="CenterAndExpand"
+                       Margin="5"
+                       Grid.ColumnSpan="3"
+                       Grid.Row="0"/>
+                
+                <Label Text="Название"
+                       TextColor="LightGray"
+                       FontSize="14" 
+                       HorizontalOptions="Start"
+                       VerticalOptions="CenterAndExpand"
+                       Margin="5"
+                       Grid.Column="0"
+                       Grid.Row="1"/>
+
+                <Label Text="Длинный меч"
+                       FontSize="14" 
+                       HorizontalOptions="Start"
+                       VerticalOptions="CenterAndExpand"
+                       Margin="5"
+                       Grid.Column="0"
+                       Grid.Row="2"/>
+
+                <Label Text="Бонус атаки"
+                       TextColor="LightGray"
+                       FontSize="14" 
+                       HorizontalOptions="CenterAndExpand"
+                       VerticalOptions="CenterAndExpand"
+                       Margin="5"
+                       Grid.Column="1"
+                       Grid.Row="1"/>
+
+                <Label Text="{Binding AtackBonus}"
+                       FontSize="14" 
+                       HorizontalOptions="CenterAndExpand"
+                       VerticalOptions="CenterAndExpand"
+                       Margin="5"
+                       Grid.Column="1"
+                       Grid.Row="2"/>
+
+                <Label Text="Урон"
+                       TextColor="LightGray"
+                       FontSize="14" 
+                       HorizontalOptions="CenterAndExpand"
+                       VerticalOptions="CenterAndExpand"
+                       Margin="5"
+                       Grid.Column="2"
+                       Grid.Row="1"/>
+
+                <Label Text="{Binding DamageBonus}"
+                       FontSize="14" 
+                       HorizontalOptions="CenterAndExpand"
+                       VerticalOptions="CenterAndExpand"
+                       Margin="5"
+                       Grid.Column="2"
+                       Grid.Row="2"/>
+
+            </Grid>
+
         </StackLayout>
 
     </ContentPage.Content>

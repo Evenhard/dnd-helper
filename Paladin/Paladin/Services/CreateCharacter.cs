@@ -10,28 +10,69 @@ namespace Paladin.Services
     {
         public static async Task NewCleric()
         {
+            //var character = new Character()
+            //{
+            //    Name = "Гунтер Громобород",
+            //    Level = 8,
+            //    HP = 86,
+            //    HitDices = 8,
+            //    Class = Classes.Cleric,
+            //    Subclass = (int)Cleric.Temperst,
+            //    Gold = 5127,
+
+            //    StatStr = 4,
+            //    StatDex = 1,
+            //    StatCon = 4,
+            //    StatInt = 0,
+            //    StatWis = 4,
+            //    StatCha = 1
+
+            //    //Slots
+            //};
+
             var character = new Character()
             {
-                Name = "Гунтер Громобород",
-                Level = 8,
-                HP = 86,
-                HitDices = 8,
-                Class = Classes.Cleric,
-                Subclass = (int)Cleric.Temperst,
-                Gold = 5127,
+                Name = "Корбэн Симан",
+                Level = 5,
+                HP = 50,
+                HitDices = 5,
+                Class = Classes.Paladin,
+                Subclass = 1,
+                Gold = 100,
 
                 StatStr = 4,
                 StatDex = 1,
                 StatCon = 4,
-                StatInt = 0,
-                StatWis = 4,
-                StatCha = 1
+                StatInt = 1,
+                StatWis = 1,
+                StatCha = 4
 
                 //Slots
             };
 
             await App.Database.FillCharacter(character);
             var answer = await App.Current.MainPage.DisplayAlert("Внимание", "Ваш герой успешно создан", null, "Ок");
+        }
+
+        public static List<Slot> GetPaladinSlots()
+        {
+            var ListOfSlots = new List<Slot>();
+
+            ListOfSlots.Add(new Slot()
+            {
+                Title = "Слоты 1 уровня:",
+                Level = 1,
+                Amount = 4
+            });
+
+            ListOfSlots.Add(new Slot()
+            {
+                Title = "Слоты 2 уровня:",
+                Level = 2,
+                Amount = 2
+            });
+
+            return ListOfSlots;
         }
 
         public static List<Slot> GetClericSlots(int level)

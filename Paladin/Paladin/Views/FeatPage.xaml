@@ -67,7 +67,7 @@
 
                                 <Label Text="{Binding Title}" 
                                        FontSize="18"
-                                       WidthRequest="250"
+                                       WidthRequest="240"
                                        Margin="10, 0, 5, 0"
                                        HorizontalOptions="StartAndExpand"
                                        VerticalOptions="CenterAndExpand"/>

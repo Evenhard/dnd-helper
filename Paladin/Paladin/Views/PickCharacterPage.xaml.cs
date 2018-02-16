@@ -12,39 +12,34 @@ using Xamarin.Forms.Xaml;
 namespace Paladin.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class InventoryPage : ContentPage
+	public partial class PickCharacterPage : ContentPage
 	{
-        InventoryViewModel viewModel;
+        PickCharacterViewModel viewModel;
 
-		public InventoryPage ()
+        public PickCharacterPage ()
 		{
 			InitializeComponent ();
 
-            BindingContext = viewModel = new InventoryViewModel();
+            BindingContext = viewModel = new PickCharacterViewModel();
         }
 
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
-            var item = args.SelectedItem as Items;
-            if (item == null)
-                return;
-
-            await Navigation.PushAsync(new ItemDetailPage(new ItemDetailViewModel(item)));
-
+            var item = args.SelectedItem as Character;
             ItemsListView.SelectedItem = null;
-        }
 
-        public async void ToolbarClicked(object sender, EventArgs args)
-        {
-            await Navigation.PushAsync(new ItemAddPage());
+            if (item == null) return;
+
+            //await Navigation.PushAsync(new SpellDetailPage(new SpellDetailViewModel(item)));
         }
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
 
-            //if (viewModel.Items.Count == 0)
+            if (viewModel.Items.Count == 0)
                 viewModel.LoadItemsCommand.Execute(null);
         }
+
     }
 }

@@ -43,7 +43,7 @@ namespace Paladin.ViewModels
                 var value = await ExecuteInputPopup("Получено золота");
                 Gold += value;
                 character.Gold += value;
-                await App.Database.GoldUpdate(character);
+                await App.Database.HeroUpdate(character);
             });
 
             GoldRemoveCommand = new Command(async (e) =>
@@ -51,17 +51,17 @@ namespace Paladin.ViewModels
                 var value = await ExecuteInputPopup("Потрачено золота");
                 Gold -= value;
                 character.Gold -= value;
-                await App.Database.GoldUpdate(character);
+                await App.Database.HeroUpdate(character);
             });
 
             MessagingCenter.Subscribe<ItemDetailPage>(this, "DeleteItem", async obj =>
             {
-                await ExecuteLoadItemsCommand();
+                //await ExecuteLoadItemsCommand();
             });
 
             MessagingCenter.Subscribe<ItemAddPage>(this, "AddItem", async obj =>
             {
-                await ExecuteLoadItemsCommand();
+                //await ExecuteLoadItemsCommand();
             });
         }
 

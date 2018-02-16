@@ -26,6 +26,9 @@
     <Compile Update="Views\AboutPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\PickCharacterPage.xaml.cs">
+      <DependentUpon>PickCharacterPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\SpellDetailPage.xaml.cs">
       <SubType>Code</SubType>
       <DependentUpon>SpellDetailPage.xaml</DependentUpon>
@@ -66,6 +69,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\ItemDetailPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\PickCharacterPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\PreparedPage.xaml">

@@ -12,5 +12,10 @@ namespace Paladin.Views
 		{
 			InitializeComponent ();
 		}
-	}
+
+        public async void ButtonClicked(object sender, EventArgs args)
+        {
+            await Navigation.PushAsync(new PickCharacterPage());
+        }
+    }
 }

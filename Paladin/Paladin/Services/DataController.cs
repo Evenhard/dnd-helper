@@ -61,10 +61,7 @@ namespace Paladin.Services
         public async Task FillSpellBase (List<SpellItem> list)
         {
             await database.CreateTableAsync<SpellItem>(CreateFlags.ImplicitPK);
-
             await database.InsertAllAsync(list);
-            //foreach (var item in list)
-            //    await database.InsertAsync(item);
         }
 
         public async Task FillCharacter (Character hero)
@@ -83,12 +80,10 @@ namespace Paladin.Services
             return database.Table<Character>().Where(i => i.Id == id).FirstOrDefaultAsync();
         }
 
-        public async Task FillItems(List<Items> items)
+        public async Task FillItems(List<Items> list)
         {
             await database.CreateTableAsync<Items>(CreateFlags.ImplicitPK);
-
-            foreach (var item in items)
-                await database.InsertAsync(item);
+            await database.InsertAllAsync(list);
         }
 
         public Task<List<Items>> GetInventoryesList()
@@ -96,7 +91,7 @@ namespace Paladin.Services
             return database.Table<Items>().ToListAsync();
         }
 
-        public Task GoldUpdate(Character hero)
+        public Task HeroUpdate(Character hero)
         {
             return database.UpdateAsync(hero);
         }
